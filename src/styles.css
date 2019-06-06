@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+.add-border{
+    border: 1px solid black;
+    height: 60px;
+}
+
+.button{
+    background-color: aquamarine;
+}
+
+.banniere{
+    background-image: url('https://buidln.clipdealer.com/002/512/082//previews/1--2512082-light-coloured%20soft%20frame%20loop%20background.jpg');
+    background-size: cover;
+}

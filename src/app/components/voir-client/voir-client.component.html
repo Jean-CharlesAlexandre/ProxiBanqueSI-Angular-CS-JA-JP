@@ -1,3 +1,54 @@
-<p>
-  voir-client works!
-</p>
+<div style="text-align:center">
+    <table class="table">
+        <th class="col-sm-6">
+            <h5 class="card-text">Informations client : </h5>
+            <div class="card-body" *ngIf="clientDetails.nom">
+                <p class="card-text">Pr&eacute;nom : {{clientDetails.prenom}}</p>
+                <p class="card-text">Nom : {{clientDetails.nom}}</p>
+                <hr color="black">
+                <p class="card-text"><u>Coordonn&eacute;es</u></p>
+                <p class="card-text">Num&eacute;ro : {{clientDetails.adresse.numero}}</p>
+                <p class="card-text">Rue : {{clientDetails.adresse.rue}}</p>
+                <p class="card-text">Code Postal : {{clientDetails.adresse.codePostal}}</p>
+                <p class="card-text">Ville : {{clientDetails.adresse.ville}}</p>
+                <p class="card-text">Email : {{clientDetails.email}}</p>
+                <p class="card-text">T&eacute;l&eacute;phone : {{clientDetails.telephone}}</p>
+            </div>
+            <div class="card-body" *ngIf="!clientDetails.nom">
+                <p class="card-text">Raison Sociale : {{clientDetails.raisonSociale}}</p>
+                <hr color="black">
+                <p class="card-text"><u>Coordonn&eacute;es</u></p>
+                <p class="card-text">Num&eacute;ro : {{clientDetails.adresse.numero}}</p>
+                <p class="card-text">Rue : {{clientDetails.adresse.rue}}</p>
+                <p class="card-text">Code Postal : {{clientDetails.adresse.codePostal}}</p>
+                <p class="card-text">Ville : {{clientDetails.adresse.ville}}</p>
+                <p class="card-text">Email : {{clientDetails.email}}</p>
+                <p class="card-text">T&eacute;l&eacute;phone : {{clientDetails.telephone}}</p>
+            </div>
+        </th>
+    </table>
+    <table class="table">
+        <th class="col-sm-6">
+            <h5 class="card-text">Comptes client : </h5>
+            <h6>Compte courant : </h6>
+            <div class="card-body" *ngIf="clientDetails.compteCourant.autorisationDecouvert">
+                <p class="card-text">Num&eacute;ro de compte : {{clientDetails.compteCourant.numCompte}}</p>
+                <p class="card-text">Solde : {{clientDetails.compteCourant.solde}}</p>
+                <p class="card-text">Autorisation de d&eacute;couvert :
+                    {{clientDetails.compteCourant.autorisationDecouvert}}
+                </p>
+                <p class="card-text">Date d'ouverture : {{clientDetails.compteCourant.dateOuverture}}</p>
+                <p class="card-text">Cartes : {{clientDetails.compteCourant.carte.typePremierOuElectron}}</p>
+            </div>
+            <h6>Compte &eacute;pargne : </h6>
+            <div class="card-body" *ngIf="clientDetails.compteEpargne.tauxRemuneration">
+                <p class="card-text">Num&eacute;ro de compte : {{clientDetails.compteEpargne.numCompte}}</p>
+                <p class="card-text">Solde : {{clientDetails.compteEpargne.solde}}</p>
+                <p class="card-text">Taux de r&eacute;mun&eacute;ration :
+                    {{clientDetails.compteEpargne.tauxRemuneration}}</p>
+                <p class="card-text">Date d'ouverture : {{clientDetails.compteEpargne.dateOuverture}}</p>
+            </div>
+        </th>
+    </table>
+    <button class="btn btn-primary" (click)="gotoList()">Retour</button>
+</div>
