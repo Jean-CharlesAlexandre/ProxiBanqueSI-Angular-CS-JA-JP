@@ -1,3 +1,38 @@
-<p>
-  creer-client works!
-</p>
+<div>
+    <div>
+        <h2>Create client:
+        </h2>
+    </div>
+    <form [formGroup]="createClientForm" (ngSubmit)="onSubmit()">
+        <label>Nom : </label><input type="text" id="nom" name="nom" formControlName="nom">
+
+        <div>
+            <label>Pr&eacute;nom : </label><input type="text" id="prenom" name="prenom" formControlName="prenom">
+        </div>
+        <div>
+            <div>
+                <label>E-mail : </label><input type=" text" id="email" name="email" formControlName="email">
+            </div>
+            <div>
+                <label>T&eacute;l&eacute;phone : </label><input type="text" id="telephone" formControlName="telephone">
+            </div>
+            <div formGroupName="adresse">
+            <div>
+                <label>Num&eacute;ro : </label><input type="text" id="numero" name="numero" formControlName="numero">
+            </div>
+            <div>
+                <label>Rue : </label><input type="text" id="rue" name="rue" formControlName="rue">
+            </div>
+            <div>
+                <label>Code Postal : </label><input type="text" id="codePostal" name="codePostal"
+                    formControlName="codePostal">
+            </div>
+            <div>
+                <label>Ville : </label><input type="text" id="ville" name="ville" formControlName="ville">
+            </div>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="!createClientForm.valid">Cr&eacute;er le client</button>
+    </form>
+</div>
