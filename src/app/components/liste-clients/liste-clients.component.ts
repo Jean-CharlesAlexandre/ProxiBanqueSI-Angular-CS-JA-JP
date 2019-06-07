@@ -24,6 +24,7 @@ export class ListeClientsComponent implements OnInit {
     ngOnInit() {
         this.afficherClients();
         this.afficherConseiller(this.conseiller.id = 4);
+
     }
 
     afficherClients() {
@@ -32,5 +33,6 @@ export class ListeClientsComponent implements OnInit {
 
     afficherConseiller(id) {
         return this.service.getConseiller(id).subscribe(data => this.conseiller = data, error => console.log('error in service'));
+
     }
 }

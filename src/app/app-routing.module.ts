@@ -13,7 +13,8 @@ import { ModifierClientComponent } from './components/modifier-client/modifier-c
 import { VoirConseillerComponent } from './components/voir-conseiller/voir-conseiller.component';
 
 const routes: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'authentification' },
+
+    { path: '', pathMatch: 'full', redirectTo: 'liste-clients' },
     { path: 'liste-clients', component: ListeClientsComponent },
     { path: 'authentification', component: AuthentificationComponent },
     { path: 'voir-client/:id', component: VoirClientComponent },

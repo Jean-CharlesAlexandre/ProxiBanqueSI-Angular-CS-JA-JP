@@ -27,7 +27,8 @@ export class ModifierClientComponent implements OnInit {
 
     modifierClient() {
         if (window.confirm('Voulez-vous vraiment appliquer ces modifications ?')) {
-            this.service.updateClient(this.id, this.clientDetails).subscribe(data => {
+            this.service.updateClient(this.clientDetails).subscribe(data => {  // id enleve
+
                 this.router.navigate(['/liste-clients']);
             });
         }

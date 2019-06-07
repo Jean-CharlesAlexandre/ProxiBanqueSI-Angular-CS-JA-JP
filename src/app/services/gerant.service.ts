@@ -5,13 +5,14 @@ import { retry, catchError } from 'rxjs/operators';
 import { Conseiller } from '../model/conseiller';
 import { Gerant } from '../model/gerant';
 
+
 @Injectable({
     providedIn: 'root'
 })
 export class GerantService {
 
-    endpoint = 'http://localhost:3000';
-    // endpoint = 'http://localhost:8080/ProxiBanqueSI';
+    // endpoint = 'http://localhost:3000';
+    endpoint = 'http://localhost:8080/ProxiBanqueSI/gerants';
 
     constructor(private http: HttpClient) { }
 
