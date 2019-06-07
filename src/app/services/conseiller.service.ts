@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Client } from '../model/client';
 import { Conseiller } from '../model/conseiller';
-
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
@@ -43,8 +41,8 @@ export class ConseillerService {
             );
     }
 
-    getConseiller(): Observable<Conseiller> {
-        return this.http.get<Conseiller>(this.endpoint + '/conseillers', this.httpOptions)
+    getConseiller(id): Observable<Conseiller> {
+        return this.http.get<Conseiller>(this.endpoint + '/conseillers/' + id, this.httpOptions)
             .pipe(
                 catchError(this.handleError)
             );

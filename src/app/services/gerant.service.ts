@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Conseiller } from '../model/conseiller';
+import { Gerant } from '../model/gerant';
 
 @Injectable({
     providedIn: 'root'
@@ -20,8 +21,22 @@ export class GerantService {
         })
     };
 
-    getClients(): Observable<Conseiller[]> {
+    getConseillers(): Observable<Conseiller[]> {
         return this.http.get<Conseiller[]>(this.endpoint + '/conseillers', this.httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    getConseiller(id): Observable<Conseiller> {
+        return this.http.get<Conseiller>(this.endpoint + '/conseillers/' + id)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    getGerant(id): Observable<Gerant> {
+        return this.http.get<Gerant>(this.endpoint + '/gerant/' + id, this.httpOptions)
             .pipe(
                 catchError(this.handleError)
             );

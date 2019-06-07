@@ -1,3 +1,29 @@
-<p>
-  liste-conseillers works!
-</p>
+<button class="btn btn-outline-dark float-right" routerLink="/authentification">D&eacute;connexion</button>
+<div class="col-sm-12 d-flex justify-content-center">
+    <button class="btn btn-primary mr-5" routerLink="/liste-conseillers">Liste de conseiller</button>
+    <button class="btn btn-success mr-5" routerLink="/audit">R&eacute;aliser un audit</button>
+</div>
+<br />
+<h6>Vous &ecirc;tes identifi&eacute; en tant que : {{gerant.prenom}} {{gerant.nom}}</h6>
+<br />
+<h5>Liste de conseillers</h5>
+<br />
+<table class="table">
+    <tr style="text-align: center">
+        <th>Pr&eacute;nom NOM</th>
+        <th>Adresse</th>
+        <th>Coordonn&eacute;es</th>
+        <th>Informations</th>
+
+    </tr>
+    <tr *ngFor="let cons of conseillers" style="text-align: center">
+        <th>{{cons.prenom}} {{cons.nom}}</th>
+        <td>{{cons.adresse.numero}} {{cons.adresse.rue}},
+            {{cons.adresse.codePostal}}, {{cons.adresse.ville}}</td>
+        <td>Email : {{cons.email}} <br /> T&eacute;l&eacute;phone :
+            {{cons.telephone}}
+        </td>
+        <td><button class="btn btn-outline-info mr-1" routerLink="/voir-conseiller/{{cons.id}}">Voir</button>
+        </td>
+    </tr>
+</table>
