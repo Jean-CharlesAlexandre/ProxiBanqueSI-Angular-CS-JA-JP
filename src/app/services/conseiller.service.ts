@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Client } from '../model/client';
+import { Conseiller } from '../model/conseiller';
+
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +13,7 @@ import { catchError } from 'rxjs/operators';
 export class ConseillerService {
 
     endpoint = 'http://localhost:3000';
+    // endpoint = 'http://localhost:8080/ProxiBanqueSI';
 
     constructor(private http: HttpClient) { }
 
@@ -18,11 +22,32 @@ export class ConseillerService {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
         })
-    }
+    };
 
     createClient(client: Client): Observable<Client> {
         return this.http.post<Client>(this.endpoint + '/clients', JSON.stringify(client), this.httpOptions)
             .pipe(catchError(this.handleError));
+    }
+
+    getClients(): Observable<Client[]> {
+        return this.http.get<Client[]>(this.endpoint + '/clients', this.httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    getClient(id): Observable<Client> {
+        return this.http.get<Client>(this.endpoint + '/clients/' + id)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    getConseiller(): Observable<Conseiller> {
+        return this.http.get<Conseiller>(this.endpoint + '/conseillers', this.httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
     }
 
     handleError(error) {
