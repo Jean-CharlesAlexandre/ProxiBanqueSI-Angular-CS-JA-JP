@@ -6,6 +6,7 @@ export class CompteCourant {
     numCompte: number;
     dateOuverture: string;
     solde: number;
-    autorisationDecouvert: number;
-    carte: CarteBancaire;
+    carteBancaire: CarteBancaire;
+    // autorisationDecouvert: number; // AJOUT CHLOE
+
 }

@@ -1,50 +1,54 @@
-<div *ngFor="let c of conseiller">
-    <h5>Vous &ecirc;tes identifi&eacute; en tant que : {{c.prenom}} {{c.nom}}</h5>
-</div>
-<h4>Liste de particuliers</h4>
-<dt *ngFor="let client of clients">
-    <div style="text-align:center">
-        <table class="table">
-            <div class="row" *ngIf="client.nom">
-                <th class="col-sm-3 add-border">
-                    <h5 class="card-text">{{client.prenom}} {{client.nom}}</h5>
-                </th>
-                <th class="col-sm-3 add-border">
-                    <h6 class="card-text">{{client.adresse.numero}} {{client.adresse.rue}},
-                        {{client.adresse.codePostal}}, {{client.adresse.ville}} </h6>
-                </th>
-                <th class="col-sm-4 add-border">
-                    <h6 class="card-text">Email : {{client.email}} <br /> T&eacute;l&eacute;phone : {{client.telephone}}
-                    </h6>
-                </th>
-                <th class="col-sm-2 add-border">
-                    <button class="btn btn-outline-info mr-1" routerLink="/voir-client/{{client.id}}">Voir</button>
-                </th>
-            </div>
-        </table>
+<button class="btn btn-outline-dark float-right" routerLink="/authentification">D&eacute;connexion</button>
+    <div class="col-sm-12 d-flex justify-content-center">
+        <button class="btn btn-primary mr-5" routerLink="/liste-clients">Liste de clients</button>
+        <button class="btn btn-success mr-5" routerLink="/creer-client">Cr&eacute;er un client</button>
+        <button class="btn btn-warning" routerLink="/effectuer-virement">Effectuer un virement</button>
     </div>
-</dt>
-<p></p>
-<h4>Liste d'entreprises</h4>
-<dt *ngFor="let client of clients">
-    <div style="text-align:center">
-        <table class="table">
-            <div class="row" *ngIf="!client.nom">
-                <th class="col-sm-3 add-border">
-                    <h5 class="card-text">{{client.raisonSociale}}</h5>
-                </th>
-                <th class="col-sm-3 add-border">
-                    <h6 class="card-text">{{client.adresse.numero}} {{client.adresse.rue}},
-                        {{client.adresse.codePostal}}, {{client.adresse.ville}} </h6>
-                </th>
-                <th class="col-sm-4 add-border">
-                    <h6 class="card-text">Email : {{client.email}} <br /> T&eacute;l&eacute;phone : {{client.telephone}}
-                    </h6>
-                </th>
-                <th class="col-sm-2 add-border">
-                    <button class="btn btn-outline-info mr-1" routerLink="/voir-client/{{client.id}}">Voir</button>
-                </th>
-            </div>
-        </table>
-    </div>
-</dt>
+<br />
+<h6>Vous &ecirc;tes identifi&eacute; en tant que : {{conseiller.prenom}} {{conseiller.nom}}</h6>
+<br />
+<h5>Liste de particuliers</h5>
+<br />
+<table class="table">
+    <tr style="text-align: center">
+        <th>Pr&eacute;nom NOM</th>
+        <th>Adresse</th>
+        <th>Coordonn&eacute;es</th>
+        <th>Informations</th>
+
+    </tr>
+    <tr *ngFor="let client of clients" style="text-align: center">
+        <th *ngIf="client.nom && !client.raisonSociale">{{client.prenom}} {{client.nom}}</th>
+        <td *ngIf="client.nom && !client.raisonSociale">{{client.adresse.numero}} {{client.adresse.rue}},
+            {{client.adresse.codePostal}}, {{client.adresse.ville}}</td>
+        <td *ngIf="client.nom && !client.raisonSociale">Email : {{client.email}} <br /> T&eacute;l&eacute;phone :
+            {{client.telephone}}
+        </td>
+        <td *ngIf="client.nom && !client.raisonSociale"><button class="btn btn-outline-info mr-1"
+                routerLink="/voir-client/{{client.id}}">Voir</button>
+        </td>
+    </tr>
+</table>
+<br />
+<h5>Liste d'entreprises</h5>
+<br />
+<table class="table">
+    <tr style="text-align: center">
+        <th>Raison sociale</th>
+        <th>Adresse</th>
+        <th>Coordonn&eacute;es</th>
+        <th>Informations</th>
+
+    </tr>
+    <tr *ngFor="let client of clients" style="text-align: center">
+        <th *ngIf="!client.nom && client.raisonSociale">{{client.raisonSociale}}</th>
+        <td *ngIf="!client.nom && client.raisonSociale">{{client.adresse.numero}} {{client.adresse.rue}},
+            {{client.adresse.codePostal}}, {{client.adresse.ville}}</td>
+        <td *ngIf="!client.nom && client.raisonSociale">Email : {{client.email}} <br /> T&eacute;l&eacute;phone :
+            {{client.telephone}}
+        </td>
+        <td *ngIf="!client.nom && client.raisonSociale"><button class="btn btn-outline-info mr-1"
+                routerLink="/voir-client/{{client.id}}">Voir</button>
+        </td>
+    </tr>
+</table>

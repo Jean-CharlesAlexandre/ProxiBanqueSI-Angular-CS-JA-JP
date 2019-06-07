@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Client } from '../model/client';
 import { Conseiller } from '../model/conseiller';
 
@@ -12,8 +11,8 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class ConseillerService {
 
-    endpoint = 'http://localhost:3000';
-    // endpoint = 'http://localhost:8080/ProxiBanqueSI';
+     // endpoint = 'http://localhost:3000';
+    endpoint = 'http://localhost:8080/ProxiBanqueSI';
 
     constructor(private http: HttpClient) { }
 
@@ -43,8 +42,21 @@ export class ConseillerService {
             );
     }
 
-    getConseiller(): Observable<Conseiller> {
-        return this.http.get<Conseiller>(this.endpoint + '/conseillers', this.httpOptions)
+    getConseiller(id): Observable<Conseiller> {
+        return this.http.get<Conseiller>(this.endpoint + '/conseillers/' + id, this.httpOptions).pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    deleteClient(id) {
+        return this.http.delete<Client>(this.endpoint + '/clients/' + id, this.httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    updateClient(client: Client): Observable<Client> {
+        return this.http.put<Client>(this.endpoint + '/clients/' + client.id, JSON.stringify(client), this.httpOptions)
             .pipe(
                 catchError(this.handleError)
             );

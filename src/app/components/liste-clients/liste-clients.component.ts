@@ -12,22 +12,27 @@ import { Router } from '@angular/router';
 export class ListeClientsComponent implements OnInit {
 
     clients: any = [];
-    conseiller: Conseiller;
+    conseiller: any = [];
 
     constructor(
         public service: ConseillerService, public router: Router
-    ) { }
+    ) {
+        this.conseiller = new Conseiller();
+    }
 
+    // Ici changer le "4" par la valeur de l'id du conseiller qui s'est identifié
     ngOnInit() {
         this.afficherClients();
-        this.afficherConseiller();
+        this.afficherConseiller(this.conseiller.id = 4);
+
     }
 
     afficherClients() {
         return this.service.getClients().subscribe(data => this.clients = data, error => console.log('error in service'));
     }
 
-    afficherConseiller() {
-        return this.service.getConseiller().subscribe(data => this.conseiller = data, error => console.log('error in service'));
+    afficherConseiller(id) {
+        return this.service.getConseiller(id).subscribe(data => this.conseiller = data, error => console.log('error in service'));
+
     }
 }
