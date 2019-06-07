@@ -4,20 +4,30 @@
         <button class="btn btn-success mr-5" routerLink="/creer-client">Cr&eacute;er un client</button>
         <button class="btn btn-warning" routerLink="/effectuer-virement">Effectuer un virement</button>
     </div>
+<nav>
+    <a (click)="onParticulier()">Particulier</a>
+    <a (click)="onEntreprise()">Entreprise</a>
+</nav>
 <div>
     <div>
         <h2>Create client:
         </h2>
     </div>
     <form [formGroup]="createClientForm" (ngSubmit)="onSubmit()">
-        <label>Nom : </label><input type="text" id="nom" name="nom" formControlName="nom">
+        <div *ngIf="estParticulier">
+            <label>Nom : </label><input type="text" id="nom" name="nom" formControlName="nom">
 
-        <div>
-            <label>Pr&eacute;nom : </label><input type="text" id="prenom" name="prenom" formControlName="prenom">
+            <div>
+                <label>Pr&eacute;nom : </label><input type="text" id="prenom" name="prenom" formControlName="prenom">
+            </div>
+        </div>
+        <div *ngIf="!estParticulier">
+            <label>Raison sociale : </label><input type="text" id="raisonSociale" name="raisonSociale"
+                formControlName="raisonSociale">
         </div>
         <div>
             <div>
-                <label>E-mail : </label><input type=" text" id="email" name="email" formControlName="email">
+                <label>E-mail : </label><input type="text" id="email" name="email" formControlName="email">
             </div>
             <div>
                 <label>T&eacute;l&eacute;phone : </label><input type="text" id="telephone" formControlName="telephone">
@@ -39,7 +49,31 @@
                 </div>
             </div>
         </div>
+        <div>
+            <label>Compte courant : </label><input type="checkbox" id="compteCourant" name="compteCourant"
+                formControlName="compteCourant">
+        </div>
+        <div>
+            <label>Solde compte courant : </label><input type="text" id="soldeCompteCourant" name="soldeCompteCourant"
+                formControlName="soldeCompteCourant">
+        </div>
+        <div>
+            <label>Compte &eacute;pargne : </label><input type="checkbox" id="compteEpargne" name="compteEpargne"
+                formControlName="compteEpargne">
+        </div>
+        <div>
+            <label>Solde compte &eacute;pargne : </label><input type="text" id="soldeCompteEpargne"
+                name="soldeCompteEpargne" formControlName="soldeCompteEpargne">
+        </div>
+        <div>
+            <label>Carte bancaire : </label><select formControlName="carteBancaire">
+                <option selected>Electron</option>
+                <option>Premier</option>
+            </select>
+        </div>
 
-        <button type="submit" [disabled]="!createClientForm.valid">Cr&eacute;er le client</button>
+
+        <button type="submit" [disabled]="!createClientForm.valid&&!createClientForm.touched">Cr&eacute;er le
+            client</button>
     </form>
 </div>

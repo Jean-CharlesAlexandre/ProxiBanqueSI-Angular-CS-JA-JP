@@ -20,7 +20,7 @@ const routes: Routes = [
     { path: 'voir-client/:id', component: VoirClientComponent },
     { path: 'audit', component: AuditComponent },
     { path: 'confirmer-virement', component: ConfirmerVirementComponent },
-    { path: 'creer-client', component: CreerClientComponent },
+    { path: 'creer-client/:id', component: CreerClientComponent },
     { path: 'effectuer-virement', component: EffectuerVirementComponent },
     { path: 'historique-operations', component: HistoriqueOperationsComponent },
     { path: 'liste-conseillers', component: ListeConseillersComponent },

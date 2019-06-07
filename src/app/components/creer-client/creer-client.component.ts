@@ -3,6 +3,10 @@ import { ConseillerService } from 'src/app/services/conseiller.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Client } from 'src/app/model/client';
 import { Adresse } from 'src/app/model/adresse';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CompteCourant } from 'src/app/model/compte-courant';
+import { CompteEpargne } from 'src/app/model/compte-epargne';
+import { CarteBancaire } from 'src/app/model/carte-bancaire';
 
 @Component({
     selector: 'app-creer-client',
@@ -12,25 +16,16 @@ import { Adresse } from 'src/app/model/adresse';
 })
 export class CreerClientComponent implements OnInit {
 
+    estParticulier: boolean = true;
     clientDetails: any = {};
-    adresse: any = {};
+    createClientForm: FormGroup;
 
-    createClientForm = this.fb.group({
-        nom: ['', Validators.required],
-        prenom: ['', Validators.required],
-        email: ['', Validators.required],
-        telephone: ['', Validators.required],
-        adresse: this.fb.group({
-            numero: ['', Validators.required],
-            rue: ['', Validators.required],
-            codePostal: ['', Validators.required],
-            ville: ['', Validators.required]
-        })
-    });
-
-    constructor(private conseillerService: ConseillerService, private fb: FormBuilder) {
+    constructor(private conseillerService: ConseillerService, private fb: FormBuilder, private router: Router) {
         this.clientDetails = new Client();
         this.clientDetails.adresse = new Adresse();
+        this.clientDetails.compteCourant = new CompteCourant();
+        this.clientDetails.compteEpargne = new CompteEpargne();
+        this.clientDetails.carteBancaire = new CarteBancaire();
     }
 
     onSubmit() {
@@ -48,11 +43,37 @@ export class CreerClientComponent implements OnInit {
     }
 
     createClient() {
-        this.conseillerService.createClient(this.clientDetails).subscribe((data: {}) => console.log(data));
+        this.conseillerService.createClient(this.clientDetails).subscribe((data: {}) => this.router.navigate(['/liste-clients']));
     }
 
+    onParticulier() {
+        this.estParticulier = true;
+    }
+
+    onEntreprise() {
+        this.estParticulier = false;
+    }
 
     ngOnInit() {
+        this.createClientForm = this.fb.group({
+            raisonSociale: ['', Validators.required],
+            nom: ['', Validators.required],
+            prenom: ['', Validators.required],
+            email: ['', Validators.required],
+            telephone: ['', Validators.required],
+            adresse: this.fb.group({
+                numero: ['', Validators.required],
+                rue: ['', Validators.required],
+                codePostal: ['', Validators.required],
+                ville: ['', Validators.required]
+            }),
+            compteCourant: ['', Validators.required],
+            soldeCompteCourant: ['', Validators.required],
+            compteEpargne: ['', Validators.required],
+            soldeCompteEpargne: ['', Validators.required],
+            carteBancaire: ['', Validators.required],
+            typeCarteBancaire: ['', Validators.required]
+        });
     }
 
 }
