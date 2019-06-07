@@ -1,3 +1,50 @@
-<p>
-  liste-clients works!
-</p>
+<div *ngFor="let c of conseiller">
+    <h5>Vous &ecirc;tes identifi&eacute; en tant que : {{c.prenom}} {{c.nom}}</h5>
+</div>
+<h4>Liste de particuliers</h4>
+<dt *ngFor="let client of clients">
+    <div style="text-align:center">
+        <table class="table">
+            <div class="row" *ngIf="client.nom && !client.raisonSociale">
+                <th class="col-sm-3 add-border">
+                    <h5 class="card-text">{{client.prenom}} {{client.nom}}</h5>
+                </th>
+                <th class="col-sm-3 add-border">
+                    <h6 class="card-text">{{client.adresse.numero}} {{client.adresse.rue}},
+                        {{client.adresse.codePostal}}, {{client.adresse.ville}} </h6>
+                </th>
+                <th class="col-sm-4 add-border">
+                    <h6 class="card-text">Email : {{client.email}} <br /> T&eacute;l&eacute;phone : {{client.telephone}}
+                    </h6>
+                </th>
+                <th class="col-sm-2 add-border">
+                    <button class="btn btn-outline-info mr-1" routerLink="/voir-client/{{client.id}}">Voir</button>
+                </th>
+            </div>
+        </table>
+    </div>
+</dt>
+<p></p>
+<h4>Liste d'entreprises</h4>
+<dt *ngFor="let client of clients">
+    <div style="text-align:center">
+        <table class="table">
+            <div class="row" *ngIf="!client.nom && client.raisonSociale">
+                <th class="col-sm-3 add-border">
+                    <h5 class="card-text">{{client.raisonSociale}}</h5>
+                </th>
+                <th class="col-sm-3 add-border">
+                    <h6 class="card-text">{{client.adresse.numero}} {{client.adresse.rue}},
+                        {{client.adresse.codePostal}}, {{client.adresse.ville}} </h6>
+                </th>
+                <th class="col-sm-4 add-border">
+                    <h6 class="card-text">Email : {{client.email}} <br /> T&eacute;l&eacute;phone : {{client.telephone}}
+                    </h6>
+                </th>
+                <th class="col-sm-2 add-border">
+                    <button class="btn btn-outline-info mr-1" routerLink="/voir-client/{{client.id}}">Voir</button>
+                </th>
+            </div>
+        </table>
+    </div>
+</dt>
