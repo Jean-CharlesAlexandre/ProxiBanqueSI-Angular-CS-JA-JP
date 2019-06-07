@@ -1,11 +1,10 @@
-<div style="text-align:center">
-    <table class="table">
-        <th class="col-sm-6">
+<div class="row">
+    <div class="col-sm-3">
+        <div style="text-align:center">
             <h5 class="card-text">Informations client : </h5>
             <div class="card-body" *ngIf="clientDetails.nom">
                 <p class="card-text">Pr&eacute;nom : {{clientDetails.prenom}}</p>
                 <p class="card-text">Nom : {{clientDetails.nom}}</p>
-                <hr color="black">
                 <p class="card-text"><u>Coordonn&eacute;es</u></p>
                 <p class="card-text">Num&eacute;ro : {{clientDetails.adresse.numero}}</p>
                 <p class="card-text">Rue : {{clientDetails.adresse.rue}}</p>
@@ -16,7 +15,6 @@
             </div>
             <div class="card-body" *ngIf="!clientDetails.nom">
                 <p class="card-text">Raison Sociale : {{clientDetails.raisonSociale}}</p>
-                <hr color="black">
                 <p class="card-text"><u>Coordonn&eacute;es</u></p>
                 <p class="card-text">Num&eacute;ro : {{clientDetails.adresse.numero}}</p>
                 <p class="card-text">Rue : {{clientDetails.adresse.rue}}</p>
@@ -25,30 +23,51 @@
                 <p class="card-text">Email : {{clientDetails.email}}</p>
                 <p class="card-text">T&eacute;l&eacute;phone : {{clientDetails.telephone}}</p>
             </div>
-        </th>
-    </table>
-    <table class="table">
-        <th class="col-sm-6">
-            <h5 class="card-text">Comptes client : </h5>
-            <h6>Compte courant : </h6>
-            <div class="card-body" *ngIf="clientDetails.compteCourant.autorisationDecouvert">
-                <p class="card-text">Num&eacute;ro de compte : {{clientDetails.compteCourant.numCompte}}</p>
-                <p class="card-text">Solde : {{clientDetails.compteCourant.solde}}</p>
-                <p class="card-text">Autorisation de d&eacute;couvert :
-                    {{clientDetails.compteCourant.autorisationDecouvert}}
-                </p>
-                <p class="card-text">Date d'ouverture : {{clientDetails.compteCourant.dateOuverture}}</p>
-                <p class="card-text">Cartes : {{clientDetails.compteCourant.carte.typePremierOuElectron}}</p>
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div style="text-align:center">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Compte</th>
+                        <th scope="col">Num&eacute;ro de compte</th>
+                        <th scope="col">Solde</th>
+                        <th scope="col">Autorisation d&eacute;couvert/Taux r&eacute;mun&eacute;ration</th>
+                        <th scope="col">Date d'ouverture</th>
+                        <th scope="col">Cartes</th>
+                        <th scope="col">Historique</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Compte courant</th>
+                        <td>{{clientDetails.compteCourant.numCompte}}</td>
+                        <td>{{clientDetails.compteCourant.solde}} &euro;</td>
+                        <td>{{clientDetails.compteCourant.autorisationDecouvert}} &euro;</td>
+                        <td>{{clientDetails.compteCourant.dateOuverture}}</td>
+                        <td>{{clientDetails.compteCourant.carte.typePremierOuElectron}}</td>
+                        <td><button class="btn btn-outline-dark" routerLink="/historique-operations">Historique</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Compte &eacute;pargne</th>
+                        <td>{{clientDetails.compteEpargne.numCompte}}</td>
+                        <td>{{clientDetails.compteEpargne.solde}} &euro;</td>
+                        <td>{{clientDetails.compteEpargne.tauxRemuneration}} %</td>
+                        <td>{{clientDetails.compteEpargne.dateOuverture}}</td>
+                        <td>/</td>
+                        <td><button class="btn btn-outline-dark" routerLink="/historique-operations">Historique</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-sm-6 d-flex justify-content-center">
+                <button class="btn btn-info float-center mr-5" (click)="gotoList()">Retour</button>
+                <button class="btn btn-secondary float-center mr-5"
+                    routerLink="/modifier-client/{{clientDetails.id}}">Modifier</button>
+                <button class="btn btn-danger float-center"
+                    (click)="supprimerClient(clientDetails.id)">Supprimer</button>
             </div>
-            <h6>Compte &eacute;pargne : </h6>
-            <div class="card-body" *ngIf="clientDetails.compteEpargne.tauxRemuneration">
-                <p class="card-text">Num&eacute;ro de compte : {{clientDetails.compteEpargne.numCompte}}</p>
-                <p class="card-text">Solde : {{clientDetails.compteEpargne.solde}}</p>
-                <p class="card-text">Taux de r&eacute;mun&eacute;ration :
-                    {{clientDetails.compteEpargne.tauxRemuneration}}</p>
-                <p class="card-text">Date d'ouverture : {{clientDetails.compteEpargne.dateOuverture}}</p>
-            </div>
-        </th>
-    </table>
-    <button class="btn btn-primary" (click)="gotoList()">Retour</button>
-</div>
+        </div>
+    </div>

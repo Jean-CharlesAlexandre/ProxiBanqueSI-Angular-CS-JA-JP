@@ -35,4 +35,12 @@ export class VoirClientComponent implements OnInit {
         return false;
     }
 
+    supprimerClient(id) {
+        if (window.confirm('Voulez-vous vraiment supprimer ce client ?')) {
+            this.service.deleteClient(id).subscribe(data => {
+                this.router.navigate(['/liste-clients']);
+            });
+        }
+    }
+
 }

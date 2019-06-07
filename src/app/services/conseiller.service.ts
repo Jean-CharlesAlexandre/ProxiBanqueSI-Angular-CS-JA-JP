@@ -42,6 +42,20 @@ export class ConseillerService {
             );
     }
 
+    deleteClient(id) {
+        return this.http.delete<Client>(this.endpoint + '/clients/' + id, this.httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            )
+    }
+
+    updateClient(id, client): Observable<Client> {
+        return this.http.put<Client>(this.endpoint + '/clients/' + id, JSON.stringify(client), this.httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            )
+    }
+
     handleError(error) {
         let errorMessage = '';
         if (error.error instanceof ErrorEvent) {

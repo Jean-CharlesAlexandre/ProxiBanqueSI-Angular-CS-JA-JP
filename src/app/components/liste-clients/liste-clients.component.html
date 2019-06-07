@@ -5,7 +5,7 @@
 <dt *ngFor="let client of clients">
     <div style="text-align:center">
         <table class="table">
-            <div class="row" *ngIf="client.nom">
+            <div class="row" *ngIf="client.nom && !client.raisonSociale">
                 <th class="col-sm-3 add-border">
                     <h5 class="card-text">{{client.prenom}} {{client.nom}}</h5>
                 </th>
@@ -29,7 +29,7 @@
 <dt *ngFor="let client of clients">
     <div style="text-align:center">
         <table class="table">
-            <div class="row" *ngIf="!client.nom">
+            <div class="row" *ngIf="!client.nom && client.raisonSociale">
                 <th class="col-sm-3 add-border">
                     <h5 class="card-text">{{client.raisonSociale}}</h5>
                 </th>
