@@ -13,4 +13,5 @@ export class Client {
     adresse: Adresse;
     compteCourant: CompteCourant;
     compteEpargne: CompteEpargne;
+
 }
