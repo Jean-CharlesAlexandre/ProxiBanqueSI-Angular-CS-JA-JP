@@ -15,7 +15,7 @@ import { VoirConseillerComponent } from './components/voir-conseiller/voir-conse
 const routes: Routes = [
 
     { path: '', pathMatch: 'full', redirectTo: 'liste-clients' },
-    { path: 'liste-clients', component: ListeClientsComponent },
+    { path: 'liste-clients/:idCons', component: ListeClientsComponent },
     { path: 'authentification', component: AuthentificationComponent },
     { path: 'voir-client/:id', component: VoirClientComponent },
     { path: 'audit', component: AuditComponent },
@@ -23,7 +23,7 @@ const routes: Routes = [
     { path: 'creer-client/:id', component: CreerClientComponent },
     { path: 'effectuer-virement', component: EffectuerVirementComponent },
     { path: 'historique-operations', component: HistoriqueOperationsComponent },
-    { path: 'liste-conseillers', component: ListeConseillersComponent },
+    { path: 'liste-conseillers/:idGerant', component: ListeConseillersComponent },
     { path: 'modifier-client/:id', component: ModifierClientComponent },
     { path: 'voir-conseiller/:id', component: VoirConseillerComponent }
 ];
