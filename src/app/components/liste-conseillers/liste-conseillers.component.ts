@@ -19,7 +19,7 @@ export class ListeConseillersComponent implements OnInit {
 
     ngOnInit() {
         this.afficherConseillers();
-        this.afficherGerant(this.gerant.id = 16);
+        this.afficherGerant(this.gerant.id = 1);
     }
 
     afficherConseillers() {

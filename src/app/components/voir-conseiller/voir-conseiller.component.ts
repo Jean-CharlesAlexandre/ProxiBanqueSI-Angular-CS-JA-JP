@@ -12,14 +12,15 @@ import { Adresse } from 'src/app/model/adresse';
 export class VoirConseillerComponent implements OnInit {
 
     id = this.activatedRoute.snapshot.params['id'];
-    clientDetails: any = {};
+    conseillerDetails: any = {};
 
     constructor(private service: GerantService, private activatedRoute: ActivatedRoute, private router: Router) {
-        this.clientDetails = new Conseiller();
-        this.clientDetails.adresse = new Adresse();
+        this.conseillerDetails = new Conseiller();
+        this.conseillerDetails.adresse = new Adresse();
     }
 
     ngOnInit() {
+        this.service.getConseiller(this.id).subscribe((data: {}) => this.conseillerDetails = data);
     }
 
 }

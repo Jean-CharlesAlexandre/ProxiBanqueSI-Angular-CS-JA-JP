@@ -3,6 +3,30 @@
                 <button class="btn btn-primary mr-5" routerLink="/liste-conseillers">Liste de conseiller</button>
                 <button class="btn btn-success mr-5" routerLink="/audit">R&eacute;aliser un audit</button>
             </div>
-<p>
-  voir-conseiller works!
-</p>
+<div class="row">
+    <div class="col-sm-3">
+        <div style="text-align:center">
+            <h5 class="card-text">Informations du conseiller : </h5>
+            <div class="card-body" *ngIf="conseillerDetails.nom">
+                <p class="card-text">Pr&eacute;nom : {{conseillerDetails.prenom}}</p>
+                <p class="card-text">Nom : {{conseillerDetails.nom}}</p>
+                <p class="card-text"><u>Coordonn&eacute;es</u></p>
+                <p class="card-text">Num&eacute;ro : {{conseillerDetails.adresse.numero}}</p>
+                <p class="card-text">Rue : {{conseillerDetails.adresse.rue}}</p>
+                <p class="card-text">Code Postal : {{conseillerDetails.adresse.codePostal}}</p>
+                <p class="card-text">Ville : {{conseillerDetails.adresse.ville}}</p>
+                <p class="card-text">Email : {{conseillerDetails.email}}</p>
+                <p class="card-text">T&eacute;l&eacute;phone : {{conseillerDetails.telephone}}</p>
+            </div>
+            <!-- <div class="card-body" *ngIf="!clientDetails.nom">
+                <p class="card-text">Raison Sociale : {{clientDetails.raisonSociale}}</p>
+                <p class="card-text"><u>Coordonn&eacute;es</u></p>
+                <p class="card-text">Num&eacute;ro : {{clientDetails.adresse.numero}}</p>
+                <p class="card-text">Rue : {{clientDetails.adresse.rue}}</p>
+                <p class="card-text">Code Postal : {{clientDetails.adresse.codePostal}}</p>
+                <p class="card-text">Ville : {{clientDetails.adresse.ville}}</p>
+                <p class="card-text">Email : {{clientDetails.email}}</p>
+                <p class="card-text">T&eacute;l&eacute;phone : {{clientDetails.telephone}}</p>
+            </div> -->
+        </div>
+    </div>

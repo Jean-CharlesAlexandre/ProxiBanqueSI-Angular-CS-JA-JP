@@ -19,6 +19,7 @@ import { ModifierClientComponent } from './components/modifier-client/modifier-c
 import { HistoriqueOperationsComponent } from './components/historique-operations/historique-operations.component';
 import { EffectuerVirementComponent } from './components/effectuer-virement/effectuer-virement.component';
 import { ConfirmerVirementComponent } from './components/confirmer-virement/confirmer-virement.component';
+import { VirementComponent } from './virement/virement.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { ConfirmerVirementComponent } from './components/confirmer-virement/conf
         ModifierClientComponent,
         HistoriqueOperationsComponent,
         EffectuerVirementComponent,
-        ConfirmerVirementComponent
+        ConfirmerVirementComponent,
+        VirementComponent
     ],
     imports: [
         BrowserModule,

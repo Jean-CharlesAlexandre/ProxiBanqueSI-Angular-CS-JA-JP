@@ -9,4 +9,5 @@ export class Gerant {
     identifiant: string;
     motDePasse: string;
     adresse: Adresse;
+
 }

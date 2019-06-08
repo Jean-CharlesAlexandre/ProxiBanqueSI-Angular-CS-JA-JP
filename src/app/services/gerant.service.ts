@@ -37,7 +37,7 @@ export class GerantService {
     }
     
     getGerant(id): Observable<Gerant> {
-        return this.http.get<Gerant>(this.endpoint + '/gerant/' + id, this.httpOptions)
+        return this.http.get<Gerant>(this.endpoint + '/' + id, this.httpOptions)
             .pipe(
                 catchError(this.handleError)
             );
