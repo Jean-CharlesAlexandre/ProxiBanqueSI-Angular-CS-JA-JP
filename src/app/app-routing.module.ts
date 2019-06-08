@@ -17,15 +17,15 @@ const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'authentification' },
     { path: 'liste-clients/:idCons', component: ListeClientsComponent },
     { path: 'authentification', component: AuthentificationComponent },
-    { path: 'voir-client/:id', component: VoirClientComponent },
-    { path: 'audit', component: AuditComponent },
-    { path: 'confirmer-virement', component: ConfirmerVirementComponent },
-    { path: 'creer-client/:id', component: CreerClientComponent },
+    { path: 'voir-client/:idCons/:idClient', component: VoirClientComponent },
+    { path: 'audit/:idGerant', component: AuditComponent },
+    { path: 'confirmer-virement/:idCons', component: ConfirmerVirementComponent },
+    { path: 'creer-client/:type/:idCons', component: CreerClientComponent },
     { path: 'effectuer-virement/:idCons', component: EffectuerVirementComponent },
-    { path: 'historique-operations', component: HistoriqueOperationsComponent },
+    { path: 'historique-operations/:idCons/:idClient', component: HistoriqueOperationsComponent },
     { path: 'liste-conseillers/:idGerant', component: ListeConseillersComponent },
-    { path: 'modifier-client/:id', component: ModifierClientComponent },
-    { path: 'voir-conseiller/:id', component: VoirConseillerComponent }
+    { path: 'modifier-client/:idCons/:idClient', component: ModifierClientComponent },
+    { path: 'voir-conseiller/:idGerant/:idCons', component: VoirConseillerComponent }
 ];
 
 @NgModule({

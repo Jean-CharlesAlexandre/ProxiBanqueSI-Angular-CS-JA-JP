@@ -7,6 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CompteCourant } from 'src/app/model/compte-courant';
 import { CompteEpargne } from 'src/app/model/compte-epargne';
 import { CarteBancaire } from 'src/app/model/carte-bancaire';
+import { GerantService } from 'src/app/services/gerant.service';
+import { Conseiller } from 'src/app/model/conseiller';
 
 @Component({
     selector: 'app-creer-client',
@@ -19,13 +21,18 @@ export class CreerClientComponent implements OnInit {
     estParticulier: boolean = true;
     clientDetails: any = {};
     createClientForm: FormGroup;
+    idCons = this.activatedRoute.snapshot.params['idCons'];
+    type = this.activatedRoute.snapshot.params['type'];
+    conseiller: any = [];
 
-    constructor(private conseillerService: ConseillerService, private fb: FormBuilder, private router: Router) {
+    constructor(private conseillerService: ConseillerService, private fb: FormBuilder,
+        private router: Router, private activatedRoute: ActivatedRoute, private gerantService: GerantService) {
         this.clientDetails = new Client();
         this.clientDetails.adresse = new Adresse();
         this.clientDetails.compteCourant = new CompteCourant();
         this.clientDetails.compteEpargne = new CompteEpargne();
         this.clientDetails.carteBancaire = new CarteBancaire();
+        this.conseiller = new Conseiller();
     }
 
     onSubmit() {
@@ -43,7 +50,8 @@ export class CreerClientComponent implements OnInit {
     }
 
     createClient() {
-        this.conseillerService.createClient(this.clientDetails).subscribe((data: {}) => this.router.navigate(['/liste-clients']));
+        this.conseillerService.createClient(this.clientDetails).subscribe((data: {}) =>
+            this.router.navigate(['/liste-clients' + this.idCons]));
     }
 
     onParticulier() {
@@ -74,6 +82,12 @@ export class CreerClientComponent implements OnInit {
             carteBancaire: ['', Validators.required],
             typeCarteBancaire: ['', Validators.required]
         });
+        this.conseiller = this.afficherConseiller(this.idCons);
+    }
+
+    afficherConseiller(idCons) {
+        return this.gerantService.getConseiller(idCons).subscribe(data => this.conseiller = data,
+            error => console.log('error in service'));
     }
 
 }

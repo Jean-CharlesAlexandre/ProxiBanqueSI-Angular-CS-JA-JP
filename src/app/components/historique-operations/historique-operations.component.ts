@@ -11,7 +11,8 @@ import { Adresse } from 'src/app/model/adresse';
 })
 export class HistoriqueOperationsComponent implements OnInit {
 
-    id = this.activatedRoute.snapshot.params['id'];
+    idCons = this.activatedRoute.snapshot.params['idCons'];
+    idClient = this.activatedRoute.snapshot.params['idClient'];
     clientDetails: any = {};
 
     constructor(private service: ConseillerService, private activatedRoute: ActivatedRoute, private router: Router) {

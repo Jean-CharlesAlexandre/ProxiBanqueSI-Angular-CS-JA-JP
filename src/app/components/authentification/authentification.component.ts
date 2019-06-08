@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { GerantService } from 'src/app/services/gerant.service';
+import { Gerant } from 'src/app/model/gerant';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Conseiller } from 'src/app/model/conseiller';
 
 @Component({
     selector: 'app-authentification',
@@ -11,15 +14,26 @@ export class AuthentificationComponent implements OnInit {
 
     authentificationForm: FormGroup;
     estAuthentifie: boolean = true;
+    idCons1: any = {}; //this.activatedRoute.snapshot.params['idCons1'];
+    idCons2: any = {}; //this.activatedRoute.snapshot.params['idCons2'];
+    idGerant: any = {}; //this.activatedRoute.snapshot.params['idGerant'];
+    gerant: any = [];
+    conseiller: any = [];
 
-    constructor(private fb: FormBuilder, private router: Router) { }
+    constructor(public service: GerantService, private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) {
+        this.gerant = new Gerant();
+        this.conseiller = new Conseiller();
+    }
 
     onAuthentification() {
-        if (this.authentificationForm.value.identifiant == 'coucou' && this.authentificationForm.value.motDePasse == 'coucou') {
-            this.router.navigate(['/liste-clients/2']);
+        if (this.authentificationForm.value.identifiant === 'cons1' && this.authentificationForm.value.motDePasse === 'cons1') {
+            this.router.navigate(['/liste-clients/', this.idCons1]);
             this.estAuthentifie = true;
-        } else if (this.authentificationForm.value.identifiant == 'admin' && this.authentificationForm.value.motDePasse == 'admin') {
-            this.router.navigate(['/liste-conseillers/1']);
+        } else if (this.authentificationForm.value.identifiant === 'cons2' && this.authentificationForm.value.motDePasse === 'cons2') {
+            this.router.navigate(['/liste-clients', this.idCons2]);
+            this.estAuthentifie = true;
+        } else if (this.authentificationForm.value.identifiant === 'admin' && this.authentificationForm.value.motDePasse === 'admin') {
+            this.router.navigate(['/liste-conseillers', this.idGerant]);
             this.estAuthentifie = true;
         } else {
             this.estAuthentifie = false;
@@ -31,6 +45,15 @@ export class AuthentificationComponent implements OnInit {
             identifiant: ['', Validators.required],
             motDePasse: ['', Validators.required],
         });
+        this.idGerant = 1;
+        this.idCons1 = 2;
+        this.idCons2 = 26;
     }
+    // getGerant() {
+    //     this.service.getGerant(this.gerant.id);
+    // }
+    // getConseiller() {
+    //     this.service.getConseiller(this.conseiller.id);
+    // }
 
 }

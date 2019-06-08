@@ -11,7 +11,8 @@ import { Adresse } from '../../model/adresse';
 })
 export class ModifierClientComponent implements OnInit {
 
-    id = this.activatedRoute.snapshot.params['id'];
+    idCons = this.activatedRoute.snapshot.params['idCons'];
+    idClient = this.activatedRoute.snapshot.params['idClient'];
     clientDetails: any = {};
 
     constructor(private service: ConseillerService, private activatedRoute: ActivatedRoute, private router: Router) {
@@ -20,7 +21,7 @@ export class ModifierClientComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.service.getClient(this.id).subscribe((data: {}) => {
+        this.service.getClient(this.idClient).subscribe((data: {}) => {
             this.clientDetails = data;
         });
     }
@@ -29,7 +30,7 @@ export class ModifierClientComponent implements OnInit {
         if (window.confirm('Voulez-vous vraiment appliquer ces modifications ?')) {
             this.service.updateClient(this.clientDetails).subscribe(data => {  // id enleve
 
-                this.router.navigate(['/liste-clients']);
+                this.router.navigate(['/liste-clients/' + this.idCons]);
             });
         }
     }

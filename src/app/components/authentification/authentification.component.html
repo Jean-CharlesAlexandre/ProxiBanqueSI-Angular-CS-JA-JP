@@ -1,12 +1,7 @@
-<button class="btn btn-outline-info mr-2" routerLink="/liste-conseillers/1">Liste conseillers</button>
-<button class="btn btn-outline-success mr-2" routerLink="/liste-clients/2">Liste clients</button>
-
-<hr>
-
 <div class="col-md-12 d-flex justify-content-center">
-<div *ngIf="!estAuthentifie" class="alert alert-danger">
-    Mauvais identifiant ou mot de passe
-</div>
+    <div *ngIf="!estAuthentifie" class="alert alert-danger">
+        Mauvais identifiant ou mot de passe
+    </div>
 </div>
 
 <div class="container custom-container">
@@ -19,8 +14,9 @@
                         <div class="card-subtitle mb-2 text-muted">Login : </div><input type="text" id="identifiant"
                             name="identifiant" formControlName="identifiant">
                     </div>
+                    <br />
                     <div>
-                        <div class="card-subtitle mb-2 text-muted">Mot de passe : </div><input type="text"
+                        <div class="card-subtitle mb-2 text-muted">Mot de passe : </div><input type="password"
                             id="motDePasse" name="motDePasse" formControlName="motDePasse">
                     </div><br>
                     <button class="btn btn-primary" type="submit"
