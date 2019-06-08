@@ -46,17 +46,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr *ngIf="clientDetails.compteCourant">
                         <th scope="row">Compte courant</th>
                         <td>{{clientDetails.compteCourant.numCompte}}</td>
                         <td>{{clientDetails.compteCourant.solde}} &euro;</td>
                         <td>{{clientDetails.compteCourant.autorisationDecouvert}} &euro;</td>
                         <td>{{clientDetails.compteCourant.dateOuverture}}</td>
-                        <td>{{clientDetails.compteCourant.carte.typePremierOuElectron}}</td>
+                        <td>{{clientDetails.compteCourant.carteBancaire.typePremierOuElectron}}</td>
                         <td><button class="btn btn-outline-dark" routerLink="/historique-operations">Historique</button>
                         </td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="clientDetails.compteEpargne">
                         <th scope="row">Compte &eacute;pargne</th>
                         <td>{{clientDetails.compteEpargne.numCompte}}</td>
                         <td>{{clientDetails.compteEpargne.solde}} &euro;</td>

@@ -23,7 +23,7 @@ export class VoirClientComponent implements OnInit {
         this.clientDetails.adresse = new Adresse();
         this.clientDetails.compteCourant = new CompteCourant();
         this.clientDetails.compteEpargne = new CompteEpargne();
-        this.clientDetails.compteCourant.carte = new CarteBancaire();
+        this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
     }
 
     ngOnInit() {
@@ -31,14 +31,14 @@ export class VoirClientComponent implements OnInit {
     }
 
     gotoList() {
-        this.router.navigate(['/liste-clients']);
+        this.router.navigate(['/liste-clients/2']);
         return false;
     }
 
     supprimerClient(id) {
         if (window.confirm('Voulez-vous vraiment supprimer ce client ?')) {
             this.service.deleteClient(id).subscribe(data => {
-                this.router.navigate(['/liste-clients']);
+                this.router.navigate(['/liste-clients/2']);
             });
         }
     }

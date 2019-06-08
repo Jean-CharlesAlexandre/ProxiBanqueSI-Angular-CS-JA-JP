@@ -13,9 +13,8 @@ export class Client {
     compteEpargne: CompteEpargne;
     nom: string;
     prenom: string;
-
-    // raisonSociale: string;
-    // telephone: string;
+    raisonSociale: string;
+    telephone: string;
     // conseiller: Conseiller; //AJOUT CHLOE
 
 }
