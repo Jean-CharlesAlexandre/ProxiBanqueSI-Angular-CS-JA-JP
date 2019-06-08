@@ -7,6 +7,6 @@ export class CompteCourant {
     dateOuverture: string;
     solde: number;
     carteBancaire: CarteBancaire;
-    // autorisationDecouvert: number; // AJOUT CHLOE
+    autorisationDecouvert: number;
 
 }
