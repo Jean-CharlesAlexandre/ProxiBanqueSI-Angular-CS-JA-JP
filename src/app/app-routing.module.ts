@@ -14,7 +14,7 @@ import { VoirConseillerComponent } from './components/voir-conseiller/voir-conse
 
 const routes: Routes = [
 
-    { path: '', pathMatch: 'full', redirectTo: 'liste-clients' },
+    { path: '', pathMatch: 'full', redirectTo: 'authentification' },
     { path: 'liste-clients/:idCons', component: ListeClientsComponent },
     { path: 'authentification', component: AuthentificationComponent },
     { path: 'voir-client/:id', component: VoirClientComponent },
