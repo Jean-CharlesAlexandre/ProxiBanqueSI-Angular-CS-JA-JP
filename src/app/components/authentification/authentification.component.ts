@@ -15,11 +15,14 @@ export class AuthentificationComponent implements OnInit {
     constructor(private fb: FormBuilder, private router: Router) { }
 
     onAuthentification() {
-        if (this.authentificationForm.value.identifiant == 'coucou' && this.authentificationForm.value.motDePasse == 'coucou') {
+        if (this.authentificationForm.value.identifiant == 'cons1' && this.authentificationForm.value.motDePasse == 'cons1u') {
             this.router.navigate(['/liste-clients/2']);
             this.estAuthentifie = true;
         } else if (this.authentificationForm.value.identifiant == 'admin' && this.authentificationForm.value.motDePasse == 'admin') {
             this.router.navigate(['/liste-conseillers/1']);
+            this.estAuthentifie = true;
+        } else if (this.authentificationForm.value.identifiant == 'cons2' && this.authentificationForm.value.motDePasse == 'cons2') {
+            this.router.navigate(['/liste-clients/26']);
             this.estAuthentifie = true;
         } else {
             this.estAuthentifie = false;

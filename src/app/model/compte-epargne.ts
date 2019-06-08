@@ -4,6 +4,6 @@ export class CompteEpargne {
     numCompte: number;
     dateOuverture: string;
     solde: number;
-    // tauxRemuneration: number;  // MODIF CHLOE
+    tauxRemuneration: number;
 
 }

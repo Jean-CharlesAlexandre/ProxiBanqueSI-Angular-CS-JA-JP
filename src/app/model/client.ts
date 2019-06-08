@@ -15,6 +15,5 @@ export class Client {
     prenom: string;
     raisonSociale: string;
     telephone: string;
-    // conseiller: Conseiller; //AJOUT CHLOE
 
 }

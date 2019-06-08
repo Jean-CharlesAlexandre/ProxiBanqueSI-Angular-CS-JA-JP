@@ -30,7 +30,7 @@ export class GerantService {
     }
 
     getConseiller(id): Observable<Conseiller> {
-        return this.http.get<Conseiller>(this.endpoint + '/conseillers/' + id)
+        return this.http.get<Conseiller>(this.endpoint + '/conseillers/' + id, this.httpOptions)
             .pipe(
                 catchError(this.handleError)
             );

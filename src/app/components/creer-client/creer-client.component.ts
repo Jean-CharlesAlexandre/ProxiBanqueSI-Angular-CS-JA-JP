@@ -23,12 +23,12 @@ export class CreerClientComponent implements OnInit {
     constructor(private conseillerService: ConseillerService, private fb: FormBuilder, private router: Router) {
         this.clientDetails = new Client();
         this.clientDetails.adresse = new Adresse();
-        this.clientDetails.compteCourant = new CompteCourant();
-        this.clientDetails.compteEpargne = new CompteEpargne();
-        this.clientDetails.carteBancaire = new CarteBancaire();
     }
 
     onSubmit() {
+        let genereNumCompteCourant = (Math.random()+1)*100000000;
+        let genereNumCompteEpargne = (Math.random()+1)*100000000;
+
         this.clientDetails.nom = this.createClientForm.value.nom;
         this.clientDetails.prenom = this.createClientForm.value.prenom;
         this.clientDetails.email = this.createClientForm.value.email;
@@ -38,6 +38,31 @@ export class CreerClientComponent implements OnInit {
         this.clientDetails.adresse.rue = this.createClientForm.value.adresse.rue;
         this.clientDetails.adresse.codePostal = this.createClientForm.value.adresse.codePostal;
         this.clientDetails.adresse.ville = this.createClientForm.value.adresse.ville;
+
+        if (this.createClientForm.value.compteCourant) {
+            this.clientDetails.compteCourant = new CompteCourant();
+            this.clientDetails.compteCourant.solde = this.createClientForm.value.soldeCompteCourant;
+            this.clientDetails.compteCourant.numCompte = genereNumCompteCourant;
+            this.clientDetails.compteCourant.clientAssocie = this.clientDetails;
+            this.clientDetails.compteCourant.dateOuverture = '20/08/2015';
+            if (this.createClientForm.value.carteBancaire == 'Premier') {
+                this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
+                this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Premier';
+            } else if (this.createClientForm.value.carteBancaire == 'Electron') {
+                this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
+                this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Electron';
+            }
+        }
+
+        if (this.createClientForm.value.compteEpargne) {
+            this.clientDetails.compteEpargne = new CompteEpargne();
+            this.clientDetails.compteEpargne.solde = this.createClientForm.value.soldeCompteEpargne;
+            this.clientDetails.compteEpargne.numCompte = genereNumCompteEpargne;
+            this.clientDetails.compteEpargne.dateOuverture = '20/08/2015';
+            this.clientDetails.compteCourant.clientAssocie = this.clientDetails;
+        }
+
+
 
         this.createClient();
     }
@@ -67,12 +92,12 @@ export class CreerClientComponent implements OnInit {
                 codePostal: ['', Validators.required],
                 ville: ['', Validators.required]
             }),
-            compteCourant: ['', Validators.required],
-            soldeCompteCourant: ['', Validators.required],
-            compteEpargne: ['', Validators.required],
-            soldeCompteEpargne: ['', Validators.required],
-            carteBancaire: ['', Validators.required],
-            typeCarteBancaire: ['', Validators.required]
+            compteCourant: [''],
+            soldeCompteCourant: [''],
+            compteEpargne: [''],
+            soldeCompteEpargne: [''],
+            carteBancaire: [''],
+            typeCarteBancaire: ['']
         });
     }
 

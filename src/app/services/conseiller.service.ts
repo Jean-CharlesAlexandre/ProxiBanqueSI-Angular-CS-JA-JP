@@ -11,7 +11,7 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class ConseillerService {
 
-     // endpoint = 'http://localhost:3000';
+    // endpoint = 'http://localhost:3000';
     endpoint = 'http://localhost:8080/ProxiBanqueSI';
 
     constructor(private http: HttpClient) { }
@@ -44,8 +44,8 @@ export class ConseillerService {
 
     getConseiller(id): Observable<Conseiller> {
         return this.http.get<Conseiller>(this.endpoint + '/conseillers/' + id, this.httpOptions).pipe(
-                catchError(this.handleError)
-            );
+            catchError(this.handleError)
+        );
     }
 
     deleteClient(id) {
