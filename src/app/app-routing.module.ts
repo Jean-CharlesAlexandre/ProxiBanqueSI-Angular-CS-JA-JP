@@ -21,7 +21,7 @@ const routes: Routes = [
     { path: 'audit', component: AuditComponent },
     { path: 'confirmer-virement', component: ConfirmerVirementComponent },
     { path: 'creer-client/:id', component: CreerClientComponent },
-    { path: 'effectuer-virement', component: EffectuerVirementComponent },
+    { path: 'effectuer-virement/:idCons', component: EffectuerVirementComponent },
     { path: 'historique-operations', component: HistoriqueOperationsComponent },
     { path: 'liste-conseillers/:idGerant', component: ListeConseillersComponent },
     { path: 'modifier-client/:id', component: ModifierClientComponent },
