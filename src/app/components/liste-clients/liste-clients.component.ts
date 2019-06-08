@@ -20,13 +20,12 @@ export class ListeClientsComponent implements OnInit {
         this.conseiller = new Conseiller();
     }
 
-    // Ici changer le "4" par la valeur de l'id du conseiller qui s'est identifié
     ngOnInit() {
         this.conseiller = this.afficherConseiller(this.idCons);
     }
 
     afficherConseiller(id) {
-        return this.gerantService.getConseiller(id).subscribe(data => this.conseiller = data, 
+        return this.gerantService.getConseiller(id).subscribe(data => this.conseiller = data,
             error => console.log('error in service'));
     }
 }

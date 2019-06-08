@@ -14,20 +14,20 @@ export class AuthentificationComponent implements OnInit {
 
     constructor(private fb: FormBuilder, private router: Router) { }
 
-    onAuthentification(){
-        if(this.authentificationForm.value.identifiant == 'coucou' && this.authentificationForm.value.motDePasse == 'coucou'){
+    onAuthentification() {
+        if (this.authentificationForm.value.identifiant == 'coucou' && this.authentificationForm.value.motDePasse == 'coucou') {
             this.router.navigate(['/liste-clients/2']);
             this.estAuthentifie = true;
-        }else if(this.authentificationForm.value.identifiant == 'admin' && this.authentificationForm.value.motDePasse == 'admin') {
+        } else if (this.authentificationForm.value.identifiant == 'admin' && this.authentificationForm.value.motDePasse == 'admin') {
             this.router.navigate(['/liste-conseillers/1']);
             this.estAuthentifie = true;
-        }else{
+        } else {
             this.estAuthentifie = false;
         }
     }
 
     ngOnInit() {
-         this.authentificationForm = this.fb.group({
+        this.authentificationForm = this.fb.group({
             identifiant: ['', Validators.required],
             motDePasse: ['', Validators.required],
         });
