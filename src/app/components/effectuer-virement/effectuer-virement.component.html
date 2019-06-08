@@ -60,6 +60,8 @@
 
 <!---->
 
+<form [formGroup]="choisirCompteDetC" (ngSubmit)="validerComptesDetC()">
+
 <div *ngIf="valeurTrueFalse && (choisirClientDetC.value.clientD && choisirClientDetC.value.clientC)">
 
     <div>
@@ -67,7 +69,7 @@
             <h5><u>Comptes du client debiteur {{clientDebiteur.raisonSociale}} : </u></h5>
         </label>
         <!--*ngIf="!(clientDebiteur.compteCourant.solde == null)"-->
-        <select formControlName="comptesD">
+        <select formControlName="compteD">
             <option *ngIf="!(clientDebiteur.compteCourant == null)" [ngValue]="clientDebiteur.compteCourant"
                 style="text-align: center" id="clientDC" name="clientDC">
                 <div> Compte courant numero
@@ -88,7 +90,7 @@
         <label class="mr-3">
             <h5><u>Comptes du client crediteur {{clientCrediteur.raisonSociale}} : </u></h5>
         </label>
-        <select formControlName="comptesC">
+        <select formControlName="compteC">
             <option *ngIf="!(clientCrediteur.compteCourant == null)" [ngValue]="clientCrediteur.compteCourant"
                 style="text-align: center" id="clientCC" name="clientCC">
                 <div> Compte courant numero
@@ -107,8 +109,13 @@
     <div>
         <label class="mr-3">
             <h5>Montant : </h5>
-        </label><input type="text" id="montant" name="montant" formControlName="montant">
+        </label><input type="text" id="montant" name="montant" formControlName="montant"> &euro;
     </div>
+
+    <p></p>
+     <button class="btn btn-primary mr-5" type="submit"
+        [disabled]="!choisirCompteDetC.valid&&!choisirCompteDetC.touched">Valider le virement</button>
+    <p></p>
 
 
     {{clientDebiteur.raisonSociale}}
@@ -117,8 +124,9 @@
 
     Solde du client {{clientDebiteur.nom}} : {{clientDebiteur.compteCourant.solde}}
 
-
 </div>
+
+</form>
 
 <!---->
 

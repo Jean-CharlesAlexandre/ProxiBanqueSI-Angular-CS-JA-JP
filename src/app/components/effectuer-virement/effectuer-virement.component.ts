@@ -24,13 +24,14 @@ export class EffectuerVirementComponent implements OnInit {
     clientDebiteur: any = {}; //Client = null;
     clientCrediteur: any = {}; //Client = null;
     choisirClientDetC: FormGroup;
+    choisirCompteDetC: FormGroup;
     valeurTrueFalse: boolean = false;
 
     // clientSelected: FormGroup;
 
     // tslint:disable-next-line: max-line-length
     constructor(public gerantService: GerantService, public conseillerService: ConseillerService, public router: Router, private activatedRoute: ActivatedRoute, private fb: FormBuilder) {
-        
+
         this.conseiller = new Conseiller();
 
         this.clientDebiteur = new Client();
@@ -49,7 +50,7 @@ export class EffectuerVirementComponent implements OnInit {
     }
 
     ngOnInit() {
-        
+
         this.conseiller = this.afficherConseiller(this.idCons);
 
         this.virement = this.fb.group({
@@ -59,6 +60,12 @@ export class EffectuerVirementComponent implements OnInit {
         this.choisirClientDetC = this.fb.group({
             clientD: [''],
             clientC: ['']
+        })
+
+        this.choisirCompteDetC = this.fb.group({
+            compteD: [''],
+            compteC: [''],
+            montant: ['']
         })
 
         // this.clientSelected = this.fb.group({});
@@ -131,6 +138,23 @@ export class EffectuerVirementComponent implements OnInit {
         this.valeurTrueFalse = true;
         return this.conseillerService.getClient(id).subscribe(data => this.clientCrediteur = data,
             error => console.log('error in service'));
+    }
+
+    validerComptesDetC() {
+
+        console.log(this.choisirCompteDetC.value.montant);
+
+
+        // attention faire un if pour les comptes epargnes
+        this.clientDebiteur.compteCourant.solde = this.clientDebiteur.compteCourant.solde - this.choisirCompteDetC.value.montant;
+        this.clientCrediteur.compteCourant.solde = this.clientCrediteur.compteCourant.solde - (-this.choisirCompteDetC.value.montant);
+
+        this.conseillerService.updateClient(this.clientDebiteur).subscribe((data: {}) => console.log(data))
+        this.conseillerService.updateClient(this.clientCrediteur).subscribe((data: {}) => console.log(data))
+
+
+        // this.clientCrediteur = this.afficherClientC(this.choisirClientDetC.value.clientC.id);
+
     }
 
 }
