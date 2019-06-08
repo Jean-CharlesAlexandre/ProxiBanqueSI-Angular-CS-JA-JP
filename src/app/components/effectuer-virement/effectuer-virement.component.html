@@ -16,53 +16,132 @@
 
 <!-- -->
 
-<form [formGroup]="virement" (ngSubmit)="onSubmit()">
-<div>
-    <label class="mr-3">
-        <h5><u>Client debiteur : </u></h5>
-    </label>
+<!-- <form [formGroup]="virement" (ngSubmit)="onSubmit()"> -->
 
-    <select>
-    <option *ngFor="let client of conseiller.listeClients" style="text-align: center">
-        <div *ngIf="client.nom && !client.raisonSociale">{{client.prenom}} {{client.nom}}</div>
-        <div *ngIf="!client.nom && client.raisonSociale">{{client.raisonSociale}}</div>
-    </option>
-    </select>
+<form [formGroup]="choisirClientDetC" (ngSubmit)="validerClientsDetC()">
+
+    <div>
+        <label class="mr-3">
+            <h5><u>Client debiteur : </u></h5>
+        </label>
+
+        <select formControlName="clientD">
+            <option [ngValue]="client" *ngFor="let client of conseiller.listeClients" style="text-align: center"
+                id="clientD" name="clientD">
+                <div *ngIf="client.nom && !client.raisonSociale"> {{client.prenom}} {{client.nom}} <u>{{client.id}}</u>
+                </div>
+                <div *ngIf="!client.nom && client.raisonSociale">{{client.raisonSociale}} <u>{{client.id}}</u></div>
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <label class="mr-3">
+            <h5><u>Client crediteur : </u></h5>
+        </label>
+
+        <select formControlName="clientC">
+            <option [ngValue]="client" *ngFor="let client of conseiller.listeClients" style="text-align: center"
+                id="clientC" name="clientC">
+                <div *ngIf="client.nom && !client.raisonSociale"> {{client.prenom}} {{client.nom}} <u>{{client.id}}</u>
+                </div>
+                <div *ngIf="!client.nom && client.raisonSociale">{{client.raisonSociale}} <u>{{client.id}}</u></div>
+            </option>
+        </select>
+    </div>
+
+
+    <p></p>
+    <button class="btn btn-primary mr-5" type="submit"
+        [disabled]="!choisirClientDetC.valid&&!choisirClientDetC.touched">Valider</button>
+    <p></p>
+
+</form>
+
+<!---->
+
+<div *ngIf="valeurTrueFalse && (choisirClientDetC.value.clientD && choisirClientDetC.value.clientC)">
+
+    <div>
+        <label class="mr-3">
+            <h5><u>Comptes du client debiteur {{clientDebiteur.raisonSociale}} : </u></h5>
+        </label>
+        <!--*ngIf="!(clientDebiteur.compteCourant.solde == null)"-->
+        <select formControlName="comptesD">
+            <option *ngIf="!(clientDebiteur.compteCourant == null)" [ngValue]="clientDebiteur.compteCourant"
+                style="text-align: center" id="clientDC" name="clientDC">
+                <div> Compte courant numero
+                    {{clientDebiteur.compteCourant.numCompte}}, &nbsp; solde : &nbsp;
+                    {{clientDebiteur.compteCourant.solde}} &euro;</div>
+            </option>
+            <option *ngIf="!(clientDebiteur.compteEpargne == null)" [ngValue]="clientDebiteur.compteEpargne"
+                style="text-align: center" id="clientDE" name="clientDE">
+                <div> Compte epargne numero
+                    {{clientDebiteur.compteEpargne.numCompte}} &nbsp; solde : {{clientDebiteur.compteEpargne.solde}}
+                    &euro;</div>
+            </option>
+        </select>
+    </div>
 
 
     <div>
+        <label class="mr-3">
+            <h5><u>Comptes du client crediteur {{clientCrediteur.raisonSociale}} : </u></h5>
+        </label>
+        <select formControlName="comptesC">
+            <option *ngIf="!(clientCrediteur.compteCourant == null)" [ngValue]="clientCrediteur.compteCourant"
+                style="text-align: center" id="clientCC" name="clientCC">
+                <div> Compte courant numero
+                    {{clientCrediteur.compteCourant.numCompte}}, &nbsp; solde : &nbsp;
+                    {{clientCrediteur.compteCourant.solde}} &euro;</div>
+            </option>
+            <option *ngIf="!(clientCrediteur.compteEpargne == null)" [ngValue]="clientCrediteur.compteEpargne"
+                style="text-align: center" id="clientCE" name="clientCE">
+                <div> Compte epargne numero
+                    {{clientCrediteur.compteEpargne.numCompte}} &nbsp; solde : {{clientCrediteur.compteEpargne.solde}}
+                    &euro;</div>
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <label class="mr-3">
+            <h5>Montant : </h5>
+        </label><input type="text" id="montant" name="montant" formControlName="montant">
+    </div>
+
+
+    {{clientDebiteur.raisonSociale}}
+
+    coucou !!!!!
+
+    Solde du client {{clientDebiteur.nom}} : {{clientDebiteur.compteCourant.solde}}
+
+
+</div>
+
+<!---->
+
+
+<!-- Compte courant et compte epargne-->
+
+<!-- <div>
         <input class="mr-2" type="radio" id="huey" name="compteDebiteur" value="huey" checked>
         <label class="mr-5" for="huey">Compte Courant</label>
 
         <input class="mr-2" type="radio" id="dewey" name="compteDebiteur" value="dewey">
         <label for="dewey">Compte Epargne</label>
     </div>
-</div>
 
-<!---->
-
-<div>
-    <label class="mr-3">
-        <h5><u>Client crediteur : </u></h5>
-    </label>
-
-    <select>
-    <option *ngFor="let client of conseiller.listeClients" style="text-align: center">
-        <div *ngIf="client.nom && !client.raisonSociale">{{client.prenom}} {{client.nom}}</div>
-        <div *ngIf="!client.nom && client.raisonSociale">{{client.raisonSociale}}</div>
-    </option>
-    </select>
-
-    <div>
-        <input class="mr-2" type="radio" id="huey" name="compteCrediteur" value="huey" checked>
+    <div >  
+        <input  class="mr-2" type="radio" id="huey" name="compteCrediteur" value="huey" checked>
         <label class="mr-5" for="huey">Compte Courant</label>
 
         <input class="mr-2" type="radio" id="dewey" name="compteCrediteur" value="dewey">
         <label for="dewey">Compte Epargne</label>
     </div>
-</div>
 <div >
             <label class="mr-3"> <h5><u>Montant : </u></h5></label><input type="text" id="montant" name="montant" formControlName="montant">
 </div>
-     <button type="submit" [disabled]="!virement.valid&&!virement.touched">Valider</button>
-</form>
+     <button type="submit" [disabled]="!virement.valid&&!virement.touched">Valider</button> -->
+<!-- </form> -->
