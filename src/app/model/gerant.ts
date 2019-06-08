@@ -1,4 +1,5 @@
 import { Adresse } from './adresse';
+import { Conseiller } from './conseiller';
 
 export class Gerant {
     id: number;
@@ -9,4 +10,5 @@ export class Gerant {
     identifiant: string;
     motDePasse: string;
     adresse: Adresse;
+    listeConseillers: Conseiller[] = [];
 }

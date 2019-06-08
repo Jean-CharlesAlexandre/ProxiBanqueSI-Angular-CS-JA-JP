@@ -1,4 +1,5 @@
 import { Adresse } from './adresse';
+import { Client } from './client';
 
 export class Conseiller {
 
@@ -10,4 +11,5 @@ export class Conseiller {
     identifiant: string;
     motDePasse: string;
     adresse: Adresse;
+    listeClients: Client[] = [];
 }
