@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <div class="row">
     <div class="col-sm-6 d-flex justify-content-start">
         <h6>Vous &ecirc;tes identifi&eacute; en tant que : {{conseiller.prenom}} {{conseiller.nom}}</h6>
@@ -11,149 +14,172 @@
     <button class="btn btn-success mr-5" routerLink="/creer-client/{{idCons}}">Cr&eacute;er un client</button>
     <button class="btn btn-warning" routerLink="/effectuer-virement/{{idCons}}">Effectuer un virement</button>
 </div>
-<br>
+
+<button class="btn btn-info float-center mr-5" routerLink="/liste-clients/{{idCons}}"
+    routerLinkActive="router-link-active">Retour</button>
+<br />
+<br />
+
 <ul class="nav nav-tabs">
     <li class="nav-item mr-2"><a class="nav-link active" (click)="onParticulier()">Particulier</a></li>
     <li class="nav-item"><a class="nav-link active" (click)="onEntreprise()">Entreprise</a></li>
 </ul>
 <p></p>
+
+<!---->
 <div *ngIf="estParticulier==true">
     <div>
         <h2>Cr&eacute;ation d'un client particulier :
         </h2>
     </div>
-    <div class="container custom-container">
-        <div class="col-md-12">
-            <div class="form-group">
-                <form [formGroup]="createParticulierForm" (ngSubmit)="onCreateParticulier()">
+    <br />
+    <!-- <div class="row"> -->
+    <!-- <div class="container custom-container"> -->
+    <!-- <div class="col-md-12"> -->
+    <div class="form-group">
+        <form class="row" [formGroup]="createParticulierForm" (ngSubmit)="onCreateParticulier()">
 
-                    <label>Nom : </label><input type="text" id="nomParticulier" name="nomParticulier"
-                        formControlName="nomParticulier" class="form-control">
+            <div class="container col-sm-4" style="width: 30rem;">
+                <label>Nom : </label><input type="text" id="nomParticulier" name="nomParticulier"
+                    formControlName="nomParticulier" class="form-control">
 
-                    <label>Pr&eacute;nom : </label><input type="text" id="prenomParticulier" name="prenomParticulier"
-                        formControlName="prenomParticulier" class="form-control">
-
-
-                    <label>E-mail : </label><input type="text" id="emailParticulier" name="emailParticulier"
-                        formControlName="emailParticulier" class="form-control">
-
-
-                    <label>T&eacute;l&eacute;phone : </label><input type="text" id="telephoneParticulier"
-                        formControlName="telephoneParticulier" class="form-control">
-
-                    <div formGroupName="adresseParticulier">
-
-                        <label>Num&eacute;ro : </label><input type="text" id="numeroParticulier"
-                            name="numeroParticulier" formControlName="numeroParticulier" class="form-control">
-
-                        <label>Rue : </label><input type="text" id="rueParticulier" name="rueParticulier"
-                            formControlName="rueParticulier" class="form-control">
-
-                        <label>Code Postal : </label><input type="text" id="codePostalParticulier"
-                            name="codePostalParticulier" formControlName="codePostalParticulier" class="form-control">
-
-                        <label>Ville : </label><input type="text" id="villeParticulier" name="villeParticulier"
-                            formControlName="villeParticulier" class="form-control">
-
-                    </div>
-
-                    <label>Compte courant : </label><input type="checkbox" id="compteCourantParticulier"
-                        name="compteCourantParticulier" formControlName="compteCourantParticulier" class="form-control">
+                <label>Pr&eacute;nom : </label><input type="text" id="prenomParticulier" name="prenomParticulier"
+                    formControlName="prenomParticulier" class="form-control">
 
 
-                    <label>Solde compte courant : </label><input type="text" id="soldeCompteCourantParticulier"
-                        name="soldeCompteCourantParticulier" formControlName="soldeCompteCourantParticulier"
-                        class="form-control">
+                <label>E-mail : </label><input type="text" id="emailParticulier" name="emailParticulier"
+                    formControlName="emailParticulier" class="form-control">
 
 
-                    <label>Compte &eacute;pargne : </label><input type="checkbox" id="compteEpargneParticulier"
-                        name="compteEpargneParticulier" formControlName="compteEpargneParticulier" class="form-control">
+                <label>T&eacute;l&eacute;phone : </label><input type="text" id="telephoneParticulier"
+                    formControlName="telephoneParticulier" class="form-control">
 
-                    <label>Solde compte &eacute;pargne : </label><input type="text" id="soldeCompteEpargneParticulier"
-                        name="soldeCompteEpargneParticulier" formControlName="soldeCompteEpargneParticulier"
-                        class="form-control">
+                <div formGroupName="adresseParticulier">
 
+                    <label>Num&eacute;ro : </label><input type="text" id="numeroParticulier" name="numeroParticulier"
+                        formControlName="numeroParticulier" class="form-control">
 
-                    <label>Carte bancaire : </label><select formControlName="carteBancaireParticulier"
-                        class="form-control">
-                        <option selected>Electron</option>
-                        <option>Premier</option>
-                    </select>
+                    <label>Rue : </label><input type="text" id="rueParticulier" name="rueParticulier"
+                        formControlName="rueParticulier" class="form-control">
 
-                    <button type="submit"
-                        [disabled]="!createParticulierForm.valid&&!createParticulierForm.touched">Cr&eacute;er le
-                        client particulier</button>
-                </form>
+                    <label>Code Postal : </label><input type="text" id="codePostalParticulier"
+                        name="codePostalParticulier" formControlName="codePostalParticulier" class="form-control">
+
+                    <label>Ville : </label><input type="text" id="villeParticulier" name="villeParticulier"
+                        formControlName="villeParticulier" class="form-control">
+
+                </div>
             </div>
-        </div>
+            <div class="container col-sm-6" style="width: 30rem;">
+                <label>Compte courant : </label><input type="checkbox" id="compteCourantParticulier"
+                    name="compteCourantParticulier" formControlName="compteCourantParticulier" class="form-control">
+
+
+                <label>Solde compte courant : </label><input type="text" id="soldeCompteCourantParticulier"
+                    name="soldeCompteCourantParticulier" formControlName="soldeCompteCourantParticulier"
+                    class="form-control">
+
+
+                <label>Compte &eacute;pargne : </label><input type="checkbox" id="compteEpargneParticulier"
+                    name="compteEpargneParticulier" formControlName="compteEpargneParticulier" class="form-control">
+
+                <label>Solde compte &eacute;pargne : </label><input type="text" id="soldeCompteEpargneParticulier"
+                    name="soldeCompteEpargneParticulier" formControlName="soldeCompteEpargneParticulier"
+                    class="form-control">
+
+
+                <label>Carte bancaire : </label><select formControlName="carteBancaireParticulier" class="form-control">
+                    <option selected>Electron</option>
+                    <option>Premier</option>
+                </select>
+
+                <br />
+                <br />
+
+
+                <button class="btn btn-default" type="submit"
+                    [disabled]="!createParticulierForm.valid&&!createParticulierForm.touched" style="background-color: #E7EDED"><span class="fa fa-check mr-2" style="color:#0B7A6D;"></span>Cr&eacute;er le
+                    client particulier</button>
+
+            </div>
+
+        </form>
     </div>
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- </div> -->
 </div>
 
+<!---->
 <div *ngIf="estParticulier==false">
     <div>
         <h2>Cr&eacute;ation d'un client entreprise :
         </h2>
     </div>
-    <div class="container custom-container">
-        <div class="col-md-12">
-            <div class="form-group">
-                <form [formGroup]="createEntrepriseForm" (ngSubmit)="onCreateEntreprise()">
+    <!-- <div class="container custom-container"> -->
+    <!-- <div class="col-md-12"> -->
+    <br />
+    <div class="form-group">
+        <form class="row" [formGroup]="createEntrepriseForm" (ngSubmit)="onCreateEntreprise()">
 
-                    <label>Raison sociale : </label><input type="text" id="raisonSocialeEntreprise"
-                        name="raisonSocialeEntreprise" formControlName="raisonSocialeEntreprise" class="form-control">
+            <div class="container col-sm-4" style="width: 30rem;">
 
-                    <label>E-mail : </label><input type="text" id="emailEntreprise" name="emailEntreprise"
-                        formControlName="emailEntreprise" class="form-control">
+                <label>Raison sociale : </label><input type="text" id="raisonSocialeEntreprise"
+                    name="raisonSocialeEntreprise" formControlName="raisonSocialeEntreprise" class="form-control">
 
-                    <label>T&eacute;l&eacute;phone : </label><input type="text" id="telephoneEntreprise"
-                        formControlName="telephoneEntreprise" class="form-control">
+                <label>E-mail : </label><input type="text" id="emailEntreprise" name="emailEntreprise"
+                    formControlName="emailEntreprise" class="form-control">
 
-                    <div formGroupName="adresseEntreprise">
+                <label>T&eacute;l&eacute;phone : </label><input type="text" id="telephoneEntreprise"
+                    formControlName="telephoneEntreprise" class="form-control">
 
-                        <label>Num&eacute;ro : </label><input type="text" id="numeroEntreprise" name="numeroEntreprise"
-                            formControlName="numeroEntreprise" class="form-control">
+                <div formGroupName="adresseEntreprise">
 
-                        <label>Rue : </label><input type="text" id="rueEntreprise" name="rueEntreprise"
-                            formControlName="rueEntreprise" class="form-control">
+                    <label>Num&eacute;ro : </label><input type="text" id="numeroEntreprise" name="numeroEntreprise"
+                        formControlName="numeroEntreprise" class="form-control">
 
-                        <label>Code Postal : </label><input type="text" id="codePostalEntreprise"
-                            name="codePostalEntreprise" formControlName="codePostalEntreprise" class="form-control">
+                    <label>Rue : </label><input type="text" id="rueEntreprise" name="rueEntreprise"
+                        formControlName="rueEntreprise" class="form-control">
 
-                        <label>Ville : </label><input type="text" id="villeEntreprise" name="villeEntreprise"
-                            formControlName="villeEntreprise" class="form-control">
+                    <label>Code Postal : </label><input type="text" id="codePostalEntreprise"
+                        name="codePostalEntreprise" formControlName="codePostalEntreprise" class="form-control">
 
-                    </div>
+                    <label>Ville : </label><input type="text" id="villeEntreprise" name="villeEntreprise"
+                        formControlName="villeEntreprise" class="form-control">
 
-                    <label>Compte courant : </label><input type="checkbox" id="compteCourantEntreprise"
-                        name="compteCourantEntreprise" formControlName="compteCourantEntreprise" class="form-control">
-
-                    <label>Solde compte courant : </label><input type="text" id="soldeCompteCourantEntreprise"
-                        name="soldeCompteCourantEntreprise" formControlName="soldeCompteCourantEntreprise"
-                        class="form-control">
-
-                    <label>Compte &eacute;pargne : </label><input type="checkbox" id="compteEpargneEntreprise"
-                        name="compteEpargneEntreprise" formControlName="compteEpargneEntreprise" class="form-control">
-
-                    <label>Solde compte &eacute;pargne : </label><input type="text" id="soldeCompteEpargneEntreprise"
-                        name="soldeCompteEpargneEntreprise" formControlName="soldeCompteEpargneEntreprise"
-                        class="form-control">
-
-                    <label>Carte bancaire : </label><select formControlName="carteBancaireEntreprise"
-                        class="form-control">
-                        <option selected>Electron</option>
-                        <option>Premier</option>
-                    </select>
-
-                    <button type="submit"
-                        [disabled]="!createEntrepriseForm.valid&&!createEntrepriseForm.touched">Cr&eacute;er
-                        le
-                        client entreprise</button>
-                </form>
+                </div>
             </div>
-        </div>
+            <div class="container col-sm-6" style="width: 30rem;">
+                <label>Compte courant : </label><input type="checkbox" id="compteCourantEntreprise"
+                    name="compteCourantEntreprise" formControlName="compteCourantEntreprise" class="form-control">
+
+                <label>Solde compte courant : </label><input type="text" id="soldeCompteCourantEntreprise"
+                    name="soldeCompteCourantEntreprise" formControlName="soldeCompteCourantEntreprise"
+                    class="form-control">
+
+                <label>Compte &eacute;pargne : </label><input type="checkbox" id="compteEpargneEntreprise"
+                    name="compteEpargneEntreprise" formControlName="compteEpargneEntreprise" class="form-control">
+
+                <label>Solde compte &eacute;pargne : </label><input type="text" id="soldeCompteEpargneEntreprise"
+                    name="soldeCompteEpargneEntreprise" formControlName="soldeCompteEpargneEntreprise"
+                    class="form-control">
+
+                <label>Carte bancaire : </label><select formControlName="carteBancaireEntreprise" class="form-control">
+                    <option selected>Electron</option>
+                    <option>Premier</option>
+                </select>
+
+                <br />
+                <br />
+
+                <button class="btn btn-default" type="submit"
+                    [disabled]="!createEntrepriseForm.valid&&!createEntrepriseForm.touched" style="background-color: #E7EDED"> <span class="fa fa-check mr-2" style="color:#0B7A6D;"></span>Cr&eacute;er
+                    le
+                    client entreprise</button>
+
+            </div>
+        </form>
     </div>
+    <!-- </div> -->
+    <!-- </div> -->
 </div>
-
-
-<button class="btn btn-info float-center mr-5" routerLink="/liste-clients/{{idCons}}"
-    routerLinkActive="router-link-active">Retour</button>
