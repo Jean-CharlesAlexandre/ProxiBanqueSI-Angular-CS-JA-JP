@@ -11,6 +11,6 @@ export class Gerant {
     identifiant: string;
     motDePasse: string;
     adresse: Adresse;
-    listeConseillers: Conseiller[]; // = [];
+    listeConseillers: Conseiller[] = [];
 
 }

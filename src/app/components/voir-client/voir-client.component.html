@@ -1,16 +1,28 @@
-<div class="row">
-    <div class="col-sm-6 d-flex justify-content-start">
-        <h6>Vous &ecirc;tes identifi&eacute; en tant que : {{conseiller.prenom}} {{conseiller.nom}}</h6>
-    </div>
-    <div class="col-sm-6 d-flex justify-content-end">
-        <button class="btn btn-outline-dark" routerLink="/authentification">D&eacute;connexion</button>
-    </div>
-</div>
-<div class="col-sm-12 d-flex justify-content-center">
-    <button class="btn btn-primary mr-5" routerLink="/liste-clients/{{idCons}}">Liste de clients</button>
-    <button class="btn btn-success mr-5" routerLink="/creer-client/{{idCons}}">Cr&eacute;er un client</button>
-    <button class="btn btn-warning" routerLink="/effectuer-virement/{{idCons}}">Effectuer un virement</button>
-</div>
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <ul class="navbar-nav col-xl-4 d-flex justify-content-start">
+        <li class="nav-item">
+            <a class="nav-link active">Vous &ecirc;tes identifi&eacute; en tant que conseiller : {{conseiller.prenom}}
+                {{conseiller.nom}}</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav col-xl-4 d-flex justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/liste-clients/{{idCons}}"><span style="font-weight: bold">Liste clients</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/creer-client/{{idCons}}"><span style="font-weight: bold">Cr&eacute;er client</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/effectuer-virement/{{idCons}}"><span style="font-weight: bold">Effectuer virement</span></a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav col-xl-4 d-flex justify-content-end">
+        <li>
+            <a class="nav-link" routerLink="/authentification">D&eacute;connexion</a>
+        </li>
+    </ul>
+</nav>
 <br>
 <div class="row">
     <div class="col-sm-3">
