@@ -20,7 +20,7 @@ const routes: Routes = [
     { path: 'voir-client/:idCons/:idClient', component: VoirClientComponent },
     { path: 'audit/:idGerant', component: AuditComponent },
     { path: 'confirmer-virement/:idCons', component: ConfirmerVirementComponent },
-    { path: 'creer-client/:type/:idCons', component: CreerClientComponent },
+    { path: 'creer-client/:idCons', component: CreerClientComponent },
     { path: 'effectuer-virement/:idCons', component: EffectuerVirementComponent },
     { path: 'historique-operations/:idCons/:idClient', component: HistoriqueOperationsComponent },
     { path: 'liste-conseillers/:idGerant', component: ListeConseillersComponent },

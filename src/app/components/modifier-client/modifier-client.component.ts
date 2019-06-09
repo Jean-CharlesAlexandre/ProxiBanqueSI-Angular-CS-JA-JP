@@ -33,8 +33,7 @@ export class ModifierClientComponent implements OnInit {
 
     modifierClient() {
         if (window.confirm('Voulez-vous vraiment appliquer ces modifications ?')) {
-            this.service.updateClient(this.clientDetails).subscribe(data => {  // id enleve
-
+            this.service.updateClient(this.clientDetails).subscribe(data => {
                 this.router.navigate(['/liste-clients/' + this.idCons]);
             });
         }

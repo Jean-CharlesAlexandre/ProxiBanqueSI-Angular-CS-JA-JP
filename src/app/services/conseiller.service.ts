@@ -23,8 +23,8 @@ export class ConseillerService {
         })
     };
 
-    createClient(client: Client): Observable<Client> {
-        return this.http.post<Client>(this.endpoint + '/clients', JSON.stringify(client), this.httpOptions)
+    createClient(idCons, client: Client): Observable<Client> {
+        return this.http.post<Client>(this.endpoint + '/clients/' + idCons, JSON.stringify(client), this.httpOptions)
             .pipe(catchError(this.handleError));
     }
 
