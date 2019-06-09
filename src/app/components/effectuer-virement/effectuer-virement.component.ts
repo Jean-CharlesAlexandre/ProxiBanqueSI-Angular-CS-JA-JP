@@ -144,14 +144,17 @@ export class EffectuerVirementComponent implements OnInit {
 
         console.log(this.choisirCompteDetC.value.montant);
 
-
         // attention faire un if pour les comptes epargnes
-        this.clientDebiteur.compteCourant.solde = this.clientDebiteur.compteCourant.solde - this.choisirCompteDetC.value.montant;
-        this.clientCrediteur.compteCourant.solde = this.clientCrediteur.compteCourant.solde - (-this.choisirCompteDetC.value.montant);
+
+        // tslint:disable-next-line: max-line-length
+        // if ((this.choisirCompteDetC.value.compteD.id == "clientDC") && (this.choisirCompteDetC.value.compteC.id == "clientCC")) {
+            this.clientDebiteur.compteCourant.solde = this.clientDebiteur.compteCourant.solde - this.choisirCompteDetC.value.montant;
+            this.clientCrediteur.compteCourant.solde = this.clientCrediteur.compteCourant.solde - (- this.choisirCompteDetC.value.montant);
+        // }
+
 
         this.conseillerService.updateClient(this.clientDebiteur).subscribe((data: {}) => console.log(data))
         this.conseillerService.updateClient(this.clientCrediteur).subscribe((data: {}) => console.log(data))
-
 
         // this.clientCrediteur = this.afficherClientC(this.choisirClientDetC.value.clientC.id);
 

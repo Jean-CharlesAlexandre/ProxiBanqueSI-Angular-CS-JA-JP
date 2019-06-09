@@ -15,7 +15,151 @@
     <h5>En cours de d&eacute;veloppement</h5>
 </div>
 <br />
-<div class="col-sm-12 d-flex justify-content-center">
-    <button class="btn btn-info float-center mr-5" routerLink="/liste-conseillers/{{idGerant}}"
-        routerLinkActive="router-link-active">Retour</button>
+
+<h4>Audit de l'agence ProxiBanque Le Marais :</h4>
+<p></p>
+
+
+<p></p>
+<button class="btn btn-primary mr-5" (click)="realiserAudit()">AUDIT</button>
+<p></p>
+
+<!---->
+
+<!-- <form  [formGroup]="audit" (ngSubmit)="validerAudit()">  (ngSubmit)="validerAudit() -->
+
+<div *ngIf="valeurTrueFalse">
+
+
+    <div *ngFor="let client of tousClients">
+
+        <div *ngIf="client.compteCourant">
+
+
+            <div *ngIf="client.nom && !client.raisonSociale && client.compteCourant.solde > 50"> Le compte courant du
+                client particulier {{client.prenom}} {{client.nom}} a un solde de <span
+                    class="red">{{client.compteCourant.solde}} &euro; </span>.
+
+                <div *ngFor="let conseiller of gerant.listeConseillers; let c of conseiller.listeClients">
+
+                    <!-- <div *ngFor= "let c of conseiller.listeClients"> -->
+
+                        {{client.id}}
+                        <div *ngIf="c.id == client.id">
+                            Contacter son conseiller : <a href="mailto: {{conseiller.email}}"> {{conseiller.email}}</a>
+                        </div>
+
+                    <!-- </div> -->
+
+                </div>
+
+                <br />
+
+
+            </div>
+            
+                <!-- <div *ngIf="!client.nom && client.raisonSociale && client.compteCourant.solde > 700"> Le compte courant
+                    du client entreprise {{client.raisonSociale}} a un solde de <span
+                        class="red">{{client.compteCourant.solde}} &euro; </span> </div> -->
+
+
+
+        </div>
+
+
+
+        <!-- 
+        <div *ngFor="let client of tousClients">
+
+
+                <div *ngIf="client.compteCourant.solde > 50">
+
+                    Le compte courant du client d'id {{client.id}} a un solde de <span
+                        class="red">{{client.compteCourant.solde}} &euro; </span>
+
+                    </div>   !!!!!!!!-->
+
+
+        <!-- Le compte courant du client particulier {{client.prenom}} {{client.nom}} a un solde de <span
+                        class="red">{{client.compteCourant.solde}} &euro; </span> -->
+
+        <!-- </div> -->
+
+        <!-- <div *ngIf="client.compteCourant.solde > 50 && !client.nom && client.raisonSociale"> -->
+
+        <!-- Le compte courant du client entreprise {{client.raisonSociale}} a un solde de <span
+                        class="red">{{client.compteCourant.solde}} &euro; </span> -->
+
+        <!-- </div> -->
+
+        <!-- </div> -->
+
+        <!-- </div> -->
+
+    </div>
+
+    <!-- </div> -->
+
+
+
+    <!-- <h5> Clients dangereux du conseiller {{conseiller.prenom}} {{conseiller.nom}} : </h5>
+
+             <div *ngFor="let client of conseiller.listeClients">
+
+                <div *ngIf="client.compteCourant.solde > 600">
+
+                    {{client.id}} {{client.compteCourant.solde}}
+
+                </div>
+
+            </div> -->
+
+
+
+
+
+
+    <!-- <div>
+    <label class="mr-3">
+        <h5><u>Clients : </u></h5>
+    </label>
+
+    <select formControlName="clientD">
+        <option [ngValue]="client" *ngFor="let client of conseiller.listeClients" style="text-align: center"
+            id="clientD" name="clientD">
+            <div *ngIf="client.nom && !client.raisonSociale"> {{client.prenom}} {{client.nom}} <u>{{client.id}}</u>
+            </div>
+            <div *ngIf="!client.nom && client.raisonSociale">{{client.raisonSociale}} <u>{{client.id}}</u></div>
+        </option>
+    </select>
 </div>
+<div>
+    <label class="mr-3">
+        <h5><u>Client crediteur : </u></h5>
+    </label>
+
+    <select formControlName="clientC">
+        <option [ngValue]="client" *ngFor="let client of conseiller.listeClients" style="text-align: center"
+            id="clientC" name="clientC">
+            <div *ngIf="client.nom && !client.raisonSociale"> {{client.prenom}} {{client.nom}} <u>{{client.id}}</u>
+            </div>
+            <div *ngIf="!client.nom && client.raisonSociale">{{client.raisonSociale}} <u>{{client.id}}</u></div>
+        </option>
+    </select>
+</div>
+
+
+<p></p>
+<button class="btn btn-primary mr-5" type="submit"
+    [disabled]="!choisirClientDetC.valid&&!choisirClientDetC.touched">Valider</button>
+<p></p> -->
+
+
+    <!-- </form> -->
+
+    <!---->
+
+    <div class="col-sm-12 d-flex justify-content-center">
+        <button class="btn btn-info float-center mr-5" routerLink="/liste-conseillers/{{idGerant}}"
+            routerLinkActive="router-link-active">Retour</button>
+    </div>

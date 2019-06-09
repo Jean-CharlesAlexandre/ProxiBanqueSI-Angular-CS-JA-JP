@@ -17,8 +17,6 @@
     <button class="btn btn-info float-center mr-5" routerLink="/liste-clients/{{idCons}}">Retour</button>
 </div>
 <br />
-<h6>Vous &ecirc;tes identifi&eacute; en tant que : {{conseiller.prenom}} {{conseiller.nom}}</h6>
-<br />
 
 <h4>Effectuer un virement :</h4>
 <p></p>
@@ -81,6 +79,7 @@
                 <div> Compte courant numero
                     {{clientDebiteur.compteCourant.numCompte}}, &nbsp; solde : &nbsp;
                     {{clientDebiteur.compteCourant.solde}} &euro;</div>
+
             </option>
             <option *ngIf="!(clientDebiteur.compteEpargne == null)" [ngValue]="clientDebiteur.compteEpargne"
                 style="text-align: center" id="clientDE" name="clientDE">
@@ -102,6 +101,8 @@
                 <div> Compte courant numero
                     {{clientCrediteur.compteCourant.numCompte}}, &nbsp; solde : &nbsp;
                     {{clientCrediteur.compteCourant.solde}} &euro;</div>
+
+                
             </option>
             <option *ngIf="!(clientCrediteur.compteEpargne == null)" [ngValue]="clientCrediteur.compteEpargne"
                 style="text-align: center" id="clientCE" name="clientCE">
@@ -129,6 +130,5 @@
     coucou !!!!!
 
     Solde du client {{clientDebiteur.nom}} : {{clientDebiteur.compteCourant.solde}}
-
+    
 </div>
-
