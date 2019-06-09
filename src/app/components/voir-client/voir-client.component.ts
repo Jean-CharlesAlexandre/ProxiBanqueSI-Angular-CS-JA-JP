@@ -21,6 +21,7 @@ export class VoirClientComponent implements OnInit {
     clientDetails: any = {};
     idCons = this.activatedRoute.snapshot.params['idCons'];
     conseiller: any = [];
+    soldeCompteSuperieur: boolean;
 
     constructor(private service: ConseillerService, private serviceG: GerantService, private activatedRoute: ActivatedRoute, private router: Router) {
         this.clientDetails = new Client();
@@ -34,6 +35,7 @@ export class VoirClientComponent implements OnInit {
     ngOnInit() {
         this.service.getClient(this.idClient).subscribe((data: {}) => this.clientDetails = data);
         this.conseiller = this.afficherConseiller(this.idCons);
+        this.soldeCompteSuperieur = true;
     }
 
     gotoList() {
@@ -43,9 +45,11 @@ export class VoirClientComponent implements OnInit {
 
     supprimerClient(id) {
         if (window.confirm('Voulez-vous vraiment supprimer ce client ?')) {
-            this.service.deleteClient(id).subscribe(data => {
+            if(window.confirm('Veuillez contacter le client pour regulariser ses comptes !')){
+                this.service.deleteClient(id).subscribe(data => {
                 this.router.navigate(['/liste-clients/' + this.idCons]);
             });
+            }
         }
     }
 
