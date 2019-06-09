@@ -18,11 +18,12 @@ import { Conseiller } from 'src/app/model/conseiller';
 })
 export class CreerClientComponent implements OnInit {
 
-    estParticulier: boolean = true;
+    estParticulier: boolean;
     clientDetails: any = {};
-    createClientForm: FormGroup;
+    createParticulierForm: FormGroup;
+    createEntrepriseForm: FormGroup;
     idCons = this.activatedRoute.snapshot.params['idCons'];
-    type = this.activatedRoute.snapshot.params['type'];
+    // type = this.activatedRoute.snapshot.params['type'];
     conseiller: any = [];
 
     constructor(private conseillerService: ConseillerService, private fb: FormBuilder,
@@ -31,51 +32,82 @@ export class CreerClientComponent implements OnInit {
         this.clientDetails.adresse = new Adresse();
     }
 
-    onSubmit() {
-        let genereNumCompteCourant = (Math.random()+1)*100000000;
-        let genereNumCompteEpargne = (Math.random()+1)*100000000;
+    onCreateParticulier() {
+        let genereNumCompteCourantParticulier = (Math.random()+1)*100000000;
+        let genereNumCompteEpargneParticulier = (Math.random()+1)*100000000;
 
-        this.clientDetails.nom = this.createClientForm.value.nom;
-        this.clientDetails.prenom = this.createClientForm.value.prenom;
-        this.clientDetails.email = this.createClientForm.value.email;
-        this.clientDetails.telephone = this.createClientForm.value.telephone;
+        this.clientDetails.nom = this.createParticulierForm.value.nomParticulier;
+        this.clientDetails.prenom = this.createParticulierForm.value.prenomParticulier;
+        this.clientDetails.email = this.createParticulierForm.value.emailParticulier;
+        this.clientDetails.telephone = this.createParticulierForm.value.telephoneParticulier;
 
-        this.clientDetails.adresse.numero = this.createClientForm.value.adresse.numero;
-        this.clientDetails.adresse.rue = this.createClientForm.value.adresse.rue;
-        this.clientDetails.adresse.codePostal = this.createClientForm.value.adresse.codePostal;
-        this.clientDetails.adresse.ville = this.createClientForm.value.adresse.ville;
+        this.clientDetails.adresse.numero = this.createParticulierForm.value.adresseParticulier.numeroParticulier;
+        this.clientDetails.adresse.rue = this.createParticulierForm.value.adresseParticulier.rueParticulier;
+        this.clientDetails.adresse.codePostal = this.createParticulierForm.value.adresseParticulier.codePostalParticulier;
+        this.clientDetails.adresse.ville = this.createParticulierForm.value.adresseParticulier.villeParticulier;
 
-        if (this.createClientForm.value.compteCourant) {
+        if (this.createParticulierForm.value.compteCourantParticulier) {
             this.clientDetails.compteCourant = new CompteCourant();
-            this.clientDetails.compteCourant.solde = this.createClientForm.value.soldeCompteCourant;
-            this.clientDetails.compteCourant.numCompte = genereNumCompteCourant;
-            this.clientDetails.compteCourant.clientAssocie = this.clientDetails;
+            this.clientDetails.compteCourant.solde = this.createParticulierForm.value.soldeCompteCourantParticulier;
+            this.clientDetails.compteCourant.numCompte = genereNumCompteCourantParticulier;
             this.clientDetails.compteCourant.dateOuverture = '20/08/2015';
-            if (this.createClientForm.value.carteBancaire == 'Premier') {
+            if (this.createParticulierForm.value.carteBancaireParticulier == 'Premier') {
                 this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
                 this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Premier';
-            } else if (this.createClientForm.value.carteBancaire == 'Electron') {
+            } else if (this.createParticulierForm.value.carteBancaireParticulier == 'Electron') {
                 this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
                 this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Electron';
             }
         }
 
-        if (this.createClientForm.value.compteEpargne) {
+        if (this.createParticulierForm.value.compteEpargneParticulier) {
             this.clientDetails.compteEpargne = new CompteEpargne();
-            this.clientDetails.compteEpargne.solde = this.createClientForm.value.soldeCompteEpargne;
-            this.clientDetails.compteEpargne.numCompte = genereNumCompteEpargne;
+            this.clientDetails.compteEpargne.solde = this.createParticulierForm.value.soldeCompteEpargneParticulier;
+            this.clientDetails.compteEpargne.numCompte = genereNumCompteEpargneParticulier;
             this.clientDetails.compteEpargne.dateOuverture = '20/08/2015';
-            this.clientDetails.compteCourant.clientAssocie = this.clientDetails;
+        }
+        this.createClient();
+    }
+
+    onCreateEntreprise() {
+        let genereNumCompteCourantEntreprise = (Math.random()+1)*100000000;
+        let genereNumCompteEpargneEntreprise = (Math.random()+1)*100000000;
+
+        this.clientDetails.raisonSociale = this.createEntrepriseForm.value.raisonSocialeEntreprise;
+        this.clientDetails.email = this.createEntrepriseForm.value.emailEntreprise;
+        this.clientDetails.telephone = this.createEntrepriseForm.value.telephoneEntreprise;
+
+        this.clientDetails.adresse.numero = this.createEntrepriseForm.value.adresseEntreprise.numeroEntreprise;
+        this.clientDetails.adresse.rue = this.createEntrepriseForm.value.adresseEntreprise.rueEntreprise;
+        this.clientDetails.adresse.codePostal = this.createEntrepriseForm.value.adresseEntreprise.codePostalEntreprise;
+        this.clientDetails.adresse.ville = this.createEntrepriseForm.value.adresseEntreprise.villeEntreprise;
+
+        if (this.createEntrepriseForm.value.compteCourantEntreprise) {
+            this.clientDetails.compteCourant = new CompteCourant();
+            this.clientDetails.compteCourant.solde = this.createEntrepriseForm.value.soldeCompteCourantEntreprise;
+            this.clientDetails.compteCourant.numCompte = genereNumCompteCourantEntreprise;
+            this.clientDetails.compteCourant.dateOuverture = '20/08/2015';
+            if (this.createEntrepriseForm.value.carteBancaireEntreprise == 'Premier') {
+                this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
+                this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Premier';
+            } else if (this.createEntrepriseForm.value.carteBancaireEntreprise == 'Electron') {
+                this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
+                this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Electron';
+            }
         }
 
-
-
+        if (this.createEntrepriseForm.value.compteEpargneEntreprise) {
+            this.clientDetails.compteEpargne = new CompteEpargne();
+            this.clientDetails.compteEpargne.solde = this.createEntrepriseForm.value.soldeCompteEpargneEntreprise;
+            this.clientDetails.compteEpargne.numCompte = genereNumCompteEpargneEntreprise;
+            this.clientDetails.compteEpargne.dateOuverture = '20/08/2015';
+        }
         this.createClient();
     }
 
     createClient() {
-        this.conseillerService.createClient(this.clientDetails).subscribe((data: {}) =>
-            this.router.navigate(['/liste-clients' + this.idCons]));
+        this.conseillerService.createClient(this.idCons, this.clientDetails).subscribe((data: {}) =>
+            this.router.navigate(['/liste-clients/' + this.idCons]));
     }
 
     onParticulier() {
@@ -87,26 +119,44 @@ export class CreerClientComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.createClientForm = this.fb.group({
-            raisonSociale: ['', Validators.required],
-            nom: ['', Validators.required],
-            prenom: ['', Validators.required],
-            email: ['', Validators.required],
-            telephone: ['', Validators.required],
-            adresse: this.fb.group({
-                numero: ['', Validators.required],
-                rue: ['', Validators.required],
-                codePostal: ['', Validators.required],
-                ville: ['', Validators.required]
+        this.createParticulierForm = this.fb.group({
+            nomParticulier: ['', Validators.required],
+            prenomParticulier: ['', Validators.required],
+            emailParticulier: ['', Validators.required],
+            telephoneParticulier: ['', Validators.required],
+            adresseParticulier: this.fb.group({
+                numeroParticulier: ['', Validators.required],
+                rueParticulier: ['', Validators.required],
+                codePostalParticulier: ['', Validators.required],
+                villeParticulier: ['', Validators.required]
             }),
-            compteCourant: [''],
-            soldeCompteCourant: [''],
-            compteEpargne: [''],
-            soldeCompteEpargne: [''],
-            carteBancaire: [''],
-            typeCarteBancaire: ['']
+            compteCourantParticulier: [''],
+            soldeCompteCourantParticulier: [''],
+            compteEpargneParticulier: [''],
+            soldeCompteEpargneParticulier: [''],
+            carteBancaireParticulier: [''],
+            typeCarteBancaireParticulier: ['']
+        });
+
+        this.createEntrepriseForm = this.fb.group({
+            raisonSocialeEntreprise: ['', Validators.required],
+            emailEntreprise: ['', Validators.required],
+            telephoneEntreprise: ['', Validators.required],
+            adresseEntreprise: this.fb.group({
+                numeroEntreprise: ['', Validators.required],
+                rueEntreprise: ['', Validators.required],
+                codePostalEntreprise: ['', Validators.required],
+                villeEntreprise: ['', Validators.required]
+            }),
+            compteCourantEntreprise: [''],
+            soldeCompteCourantEntreprise: [''],
+            compteEpargneEntreprise: [''],
+            soldeCompteEpargneEntreprise: [''],
+            carteBancaireEntreprise: [''],
+            typeCarteBancaireEntreprise: ['']
         });
         this.conseiller = this.afficherConseiller(this.idCons);
+        this.estParticulier = true;
     }
 
     afficherConseiller(idCons) {
