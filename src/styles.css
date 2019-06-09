@@ -7,7 +7,29 @@
     background-color: aquamarine;
 }
 
-.banniere{
+/* .banniere{
     background-image: url('https://buidln.clipdealer.com/002/512/082//previews/1--2512082-light-coloured%20soft%20frame%20loop%20background.jpg');
     background-size: cover;
+} */
+
+/* .imageAuthentification{
+    background-size: cover;
+} */
+
+.fond{
+    /* background-image: url('https://pixabay.com/get/55e2d1454b50a814ea9d857fc02a307b113ac3e456577148752c78d49f/background-3246124.jpg');
+    Full height */
+    background-color: #E9E4E1;
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
+body, html {
+  height: 100%;
+}
+
+

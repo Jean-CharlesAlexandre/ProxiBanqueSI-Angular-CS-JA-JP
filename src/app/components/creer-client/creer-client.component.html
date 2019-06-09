@@ -12,6 +12,9 @@
     <button class="btn btn-warning" routerLink="/effectuer-virement/{{idCons}}">Effectuer un virement</button>
 </div>
 <br>
+<button class="btn btn-info float-center mr-5" routerLink="/liste-clients/{{idCons}}"
+    routerLinkActive="router-link-active">Retour</button>
+    <br>
 <ul class="nav nav-tabs">
     <li class="nav-item mr-2"><a class="nav-link active" (click)="onParticulier()">Particulier</a></li>
     <li class="nav-item"><a class="nav-link active" (click)="onEntreprise()">Entreprise</a></li>
@@ -153,7 +156,3 @@
         </div>
     </div>
 </div>
-
-
-<button class="btn btn-info float-center mr-5" routerLink="/liste-clients/{{idCons}}"
-    routerLinkActive="router-link-active">Retour</button>
