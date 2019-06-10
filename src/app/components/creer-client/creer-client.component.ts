@@ -14,10 +14,11 @@ import { Conseiller } from 'src/app/model/conseiller';
     selector: 'app-creer-client',
     templateUrl: './creer-client.component.html',
     styleUrls: ['./creer-client.component.css'],
-    providers: [ConseillerService]
+    providers: [ConseillerService, GerantService]
 })
 export class CreerClientComponent implements OnInit {
 
+    clientsEgalDix: boolean = false;
     estParticulier: boolean;
     clientDetails: any = {};
     createParticulierForm: FormGroup;
@@ -30,79 +31,98 @@ export class CreerClientComponent implements OnInit {
         private router: Router, private activatedRoute: ActivatedRoute, private gerantService: GerantService) {
         this.clientDetails = new Client();
         this.clientDetails.adresse = new Adresse();
+
+        this.conseiller = new Conseiller();
+        this.conseiller.listeClients = [];
     }
 
     onCreateParticulier() {
-        let genereNumCompteCourantParticulier = (Math.random()+1)*100000000;
-        let genereNumCompteEpargneParticulier = (Math.random()+1)*100000000;
+        let genereNumCompteCourantParticulier = (Math.random() + 1) * 100000000;
+        let genereNumCompteEpargneParticulier = (Math.random() + 1) * 100000000;
 
-        this.clientDetails.nom = this.createParticulierForm.value.nomParticulier;
-        this.clientDetails.prenom = this.createParticulierForm.value.prenomParticulier;
-        this.clientDetails.email = this.createParticulierForm.value.emailParticulier;
-        this.clientDetails.telephone = this.createParticulierForm.value.telephoneParticulier;
+        if (this.conseiller.listeClients.length > 9) {
 
-        this.clientDetails.adresse.numero = this.createParticulierForm.value.adresseParticulier.numeroParticulier;
-        this.clientDetails.adresse.rue = this.createParticulierForm.value.adresseParticulier.rueParticulier;
-        this.clientDetails.adresse.codePostal = this.createParticulierForm.value.adresseParticulier.codePostalParticulier;
-        this.clientDetails.adresse.ville = this.createParticulierForm.value.adresseParticulier.villeParticulier;
+            this.clientsEgalDix = true;
 
-        if (this.createParticulierForm.value.compteCourantParticulier) {
-            this.clientDetails.compteCourant = new CompteCourant();
-            this.clientDetails.compteCourant.solde = this.createParticulierForm.value.soldeCompteCourantParticulier;
-            this.clientDetails.compteCourant.numCompte = genereNumCompteCourantParticulier;
-            this.clientDetails.compteCourant.dateOuverture = '20/08/2015';
-            if (this.createParticulierForm.value.carteBancaireParticulier == 'Premier') {
-                this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
-                this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Premier';
-            } else if (this.createParticulierForm.value.carteBancaireParticulier == 'Electron') {
-                this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
-                this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Electron';
+        } else {
+
+
+            this.clientDetails.nom = this.createParticulierForm.value.nomParticulier;
+            this.clientDetails.prenom = this.createParticulierForm.value.prenomParticulier;
+            this.clientDetails.email = this.createParticulierForm.value.emailParticulier;
+            this.clientDetails.telephone = this.createParticulierForm.value.telephoneParticulier;
+
+            this.clientDetails.adresse.numero = this.createParticulierForm.value.adresseParticulier.numeroParticulier;
+            this.clientDetails.adresse.rue = this.createParticulierForm.value.adresseParticulier.rueParticulier;
+            this.clientDetails.adresse.codePostal = this.createParticulierForm.value.adresseParticulier.codePostalParticulier;
+            this.clientDetails.adresse.ville = this.createParticulierForm.value.adresseParticulier.villeParticulier;
+
+            if (this.createParticulierForm.value.compteCourantParticulier) {
+                this.clientDetails.compteCourant = new CompteCourant();
+                this.clientDetails.compteCourant.solde = this.createParticulierForm.value.soldeCompteCourantParticulier;
+                this.clientDetails.compteCourant.numCompte = genereNumCompteCourantParticulier;
+                this.clientDetails.compteCourant.dateOuverture = '20/08/2015';
+                if (this.createParticulierForm.value.carteBancaireParticulier == 'Premier') {
+                    this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
+                    this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Premier';
+                } else if (this.createParticulierForm.value.carteBancaireParticulier == 'Electron') {
+                    this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
+                    this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Electron';
+                }
             }
+
+            if (this.createParticulierForm.value.compteEpargneParticulier) {
+                this.clientDetails.compteEpargne = new CompteEpargne();
+                this.clientDetails.compteEpargne.solde = this.createParticulierForm.value.soldeCompteEpargneParticulier;
+                this.clientDetails.compteEpargne.numCompte = genereNumCompteEpargneParticulier;
+                this.clientDetails.compteEpargne.dateOuverture = '20/08/2015';
+            }
+            this.createClient();
         }
 
-        if (this.createParticulierForm.value.compteEpargneParticulier) {
-            this.clientDetails.compteEpargne = new CompteEpargne();
-            this.clientDetails.compteEpargne.solde = this.createParticulierForm.value.soldeCompteEpargneParticulier;
-            this.clientDetails.compteEpargne.numCompte = genereNumCompteEpargneParticulier;
-            this.clientDetails.compteEpargne.dateOuverture = '20/08/2015';
-        }
-        this.createClient();
     }
 
     onCreateEntreprise() {
-        let genereNumCompteCourantEntreprise = (Math.random()+1)*100000000;
-        let genereNumCompteEpargneEntreprise = (Math.random()+1)*100000000;
+        let genereNumCompteCourantEntreprise = (Math.random() + 1) * 100000000;
+        let genereNumCompteEpargneEntreprise = (Math.random() + 1) * 100000000;
 
-        this.clientDetails.raisonSociale = this.createEntrepriseForm.value.raisonSocialeEntreprise;
-        this.clientDetails.email = this.createEntrepriseForm.value.emailEntreprise;
-        this.clientDetails.telephone = this.createEntrepriseForm.value.telephoneEntreprise;
+        if (this.conseiller.listeClients.length > 10) {
 
-        this.clientDetails.adresse.numero = this.createEntrepriseForm.value.adresseEntreprise.numeroEntreprise;
-        this.clientDetails.adresse.rue = this.createEntrepriseForm.value.adresseEntreprise.rueEntreprise;
-        this.clientDetails.adresse.codePostal = this.createEntrepriseForm.value.adresseEntreprise.codePostalEntreprise;
-        this.clientDetails.adresse.ville = this.createEntrepriseForm.value.adresseEntreprise.villeEntreprise;
+            this.clientsEgalDix = true;
 
-        if (this.createEntrepriseForm.value.compteCourantEntreprise) {
-            this.clientDetails.compteCourant = new CompteCourant();
-            this.clientDetails.compteCourant.solde = this.createEntrepriseForm.value.soldeCompteCourantEntreprise;
-            this.clientDetails.compteCourant.numCompte = genereNumCompteCourantEntreprise;
-            this.clientDetails.compteCourant.dateOuverture = '20/08/2015';
-            if (this.createEntrepriseForm.value.carteBancaireEntreprise == 'Premier') {
-                this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
-                this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Premier';
-            } else if (this.createEntrepriseForm.value.carteBancaireEntreprise == 'Electron') {
-                this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
-                this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Electron';
+        } else {
+
+            this.clientDetails.raisonSociale = this.createEntrepriseForm.value.raisonSocialeEntreprise;
+            this.clientDetails.email = this.createEntrepriseForm.value.emailEntreprise;
+            this.clientDetails.telephone = this.createEntrepriseForm.value.telephoneEntreprise;
+
+            this.clientDetails.adresse.numero = this.createEntrepriseForm.value.adresseEntreprise.numeroEntreprise;
+            this.clientDetails.adresse.rue = this.createEntrepriseForm.value.adresseEntreprise.rueEntreprise;
+            this.clientDetails.adresse.codePostal = this.createEntrepriseForm.value.adresseEntreprise.codePostalEntreprise;
+            this.clientDetails.adresse.ville = this.createEntrepriseForm.value.adresseEntreprise.villeEntreprise;
+
+            if (this.createEntrepriseForm.value.compteCourantEntreprise) {
+                this.clientDetails.compteCourant = new CompteCourant();
+                this.clientDetails.compteCourant.solde = this.createEntrepriseForm.value.soldeCompteCourantEntreprise;
+                this.clientDetails.compteCourant.numCompte = genereNumCompteCourantEntreprise;
+                this.clientDetails.compteCourant.dateOuverture = '20/08/2015';
+                if (this.createEntrepriseForm.value.carteBancaireEntreprise == 'Premier') {
+                    this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
+                    this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Premier';
+                } else if (this.createEntrepriseForm.value.carteBancaireEntreprise == 'Electron') {
+                    this.clientDetails.compteCourant.carteBancaire = new CarteBancaire();
+                    this.clientDetails.compteCourant.carteBancaire.typePremierOuElectron = 'Electron';
+                }
             }
-        }
 
-        if (this.createEntrepriseForm.value.compteEpargneEntreprise) {
-            this.clientDetails.compteEpargne = new CompteEpargne();
-            this.clientDetails.compteEpargne.solde = this.createEntrepriseForm.value.soldeCompteEpargneEntreprise;
-            this.clientDetails.compteEpargne.numCompte = genereNumCompteEpargneEntreprise;
-            this.clientDetails.compteEpargne.dateOuverture = '20/08/2015';
+            if (this.createEntrepriseForm.value.compteEpargneEntreprise) {
+                this.clientDetails.compteEpargne = new CompteEpargne();
+                this.clientDetails.compteEpargne.solde = this.createEntrepriseForm.value.soldeCompteEpargneEntreprise;
+                this.clientDetails.compteEpargne.numCompte = genereNumCompteEpargneEntreprise;
+                this.clientDetails.compteEpargne.dateOuverture = '20/08/2015';
+            }
+            this.createClient();
         }
-        this.createClient();
     }
 
     createClient() {
@@ -157,6 +177,13 @@ export class CreerClientComponent implements OnInit {
         });
         this.conseiller = this.afficherConseiller(this.idCons);
         this.estParticulier = true;
+
+
+        if (this.conseiller.listeClients.length > 10) {
+
+            this.clientsEgalDix = true;
+
+        }
     }
 
     afficherConseiller(idCons) {

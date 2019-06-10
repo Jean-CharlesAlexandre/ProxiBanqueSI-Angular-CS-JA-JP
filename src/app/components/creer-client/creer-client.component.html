@@ -3,8 +3,8 @@
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <ul class="navbar-nav col-xl-4 d-flex justify-content-start">
         <li class="nav-item">
-            <a class="nav-link active">Vous &ecirc;tes identifi&eacute; en tant que conseiller : {{conseiller.prenom}}
-                {{conseiller.nom}}</a>
+            <a class="nav-link active">Vous &ecirc;tes identifi&eacute; en tant que conseiller : <span style="font-style: italic"> {{conseiller.prenom}}
+                {{conseiller.nom}} </span></a>
         </li>
     </ul>
     <ul class="navbar-nav col-xl-4 d-flex justify-content-center">
@@ -30,77 +30,90 @@
     </ul>
 </nav>
 <br>
-<button class="btn btn-info float-center mr-5" routerLink="/liste-clients/{{idCons}}"
-    routerLinkActive="router-link-active">Retour</button>
-<br>
-<ul class="nav nav-tabs">
-    <li class="nav-item mr-2"><a class="nav-link active" (click)="onParticulier()">Particulier</a></li>
-    <li class="nav-item"><a class="nav-link active" (click)="onEntreprise()">Entreprise</a></li>
+<!-- <button class="btn btn-info justify-content-center" routerLink="/liste-clients/{{idCons}}"  
+    routerLinkActive="router-link-active">Retour</button> -->
+
+
+        <div class="col-sm-12 d-flex right-content">
+   &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button style="text-align: center" class="btn btn-info float-center mr-5" routerLink="/liste-clients/{{idCons}}"
+            routerLinkActive="router-link-active"><span class="fa fa-arrow-left mr-2"></span>Retour</button>
+    </div>
+
+<ul class="nav nav-tabs justify-content-center">
+    <li ><button class="btn btn-outline-dark mr-1"><a (click)="onParticulier()">Particulier</a></button></li>
+    <li><button class="btn btn-outline-dark mr-1"><a  (click)="onEntreprise()">Entreprise</a></button></li>
 </ul>
-<p></p>
+<br>
 
 <!---->
 <div *ngIf="estParticulier==true">
-    <div>
-        <h2>Cr&eacute;ation d'un client particulier :
-        </h2>
+    <div >
+        <h4  style="text-align: center">Cr&eacute;ation d'un client particulier
+        </h4>
     </div>
     <br />
     <!-- <div class="row"> -->
     <!-- <div class="container custom-container"> -->
     <!-- <div class="col-md-12"> -->
-    <div class="form-group">
+    <div class="form-group container border border-secondary shadow p-3 mb-5 bg-white rounded">
         <form class="row" [formGroup]="createParticulierForm" (ngSubmit)="onCreateParticulier()">
 
             <div class="container col-sm-4" style="width: 30rem;">
                 <label>Nom : </label><input type="text" id="nomParticulier" name="nomParticulier"
                     formControlName="nomParticulier" class="form-control">
-
+<br>
                 <label>Pr&eacute;nom : </label><input type="text" id="prenomParticulier" name="prenomParticulier"
                     formControlName="prenomParticulier" class="form-control">
 
-
+<br>
                 <label>E-mail : </label><input type="text" id="emailParticulier" name="emailParticulier"
                     formControlName="emailParticulier" class="form-control">
-
+<br>
 
                 <label>T&eacute;l&eacute;phone : </label><input type="text" id="telephoneParticulier"
                     formControlName="telephoneParticulier" class="form-control">
-
+<br>
                 <div formGroupName="adresseParticulier">
-
+<br><label class="justify-content-center"><u>Adresse </u></label>
+<br>
+<br>
                     <label>Num&eacute;ro : </label><input type="text" id="numeroParticulier" name="numeroParticulier"
                         formControlName="numeroParticulier" class="form-control">
-
+<br>
                     <label>Rue : </label><input type="text" id="rueParticulier" name="rueParticulier"
                         formControlName="rueParticulier" class="form-control">
-
+<br>
                     <label>Code Postal : </label><input type="text" id="codePostalParticulier"
                         name="codePostalParticulier" formControlName="codePostalParticulier" class="form-control">
-
+<br>
                     <label>Ville : </label><input type="text" id="villeParticulier" name="villeParticulier"
                         formControlName="villeParticulier" class="form-control">
 
                 </div>
             </div>
             <div class="container col-sm-6" style="width: 30rem;">
-                <label>Compte courant : </label><input type="checkbox" id="compteCourantParticulier"
-                    name="compteCourantParticulier" formControlName="compteCourantParticulier" class="form-control">
-
+                           <label class="justify-content-center"><u>Comptes </u></label>
+           <br>
+                      <br>                  
+                <label class="mr-2">Compte courant :</label> <input type="checkbox" id="compteCourantParticulier"
+                    name="compteCourantParticulier" formControlName="compteCourantParticulier" >
+<br>
+<br>
 
                 <label>Solde compte courant : </label><input type="text" id="soldeCompteCourantParticulier"
                     name="soldeCompteCourantParticulier" formControlName="soldeCompteCourantParticulier"
                     class="form-control">
-
+<br>
                 <label>Carte bancaire : </label><select formControlName="carteBancaireParticulier" class="form-control">
                     <option selected>Electron</option>
                     <option>Premier</option>
                     <option>Aucune</option>
                 </select>
-
-                <label>Compte &eacute;pargne : </label><input type="checkbox" id="compteEpargneParticulier"
-                    name="compteEpargneParticulier" formControlName="compteEpargneParticulier" class="form-control">
-
+<br>
+                <label class="mr-2">Compte &eacute;pargne : </label><input type="checkbox" id="compteEpargneParticulier"
+                    name="compteEpargneParticulier" formControlName="compteEpargneParticulier">
+<br>
+<br>
                 <label>Solde compte &eacute;pargne : </label><input type="text" id="soldeCompteEpargneParticulier"
                     name="soldeCompteEpargneParticulier" formControlName="soldeCompteEpargneParticulier"
                     class="form-control">
@@ -116,6 +129,10 @@
                         class="fa fa-address-card mr-2"></span>Cr&eacute;er le
                     client particulier</button>
 
+                <div class="alert alert-danger" *ngIf="clientsEgalDix==true">
+                    Impossible de cr&eacute;er un nouveau client. Limite de 10 clients atteinte.
+                </div>
+
             </div>
 
         </form>
@@ -128,59 +145,66 @@
 <!---->
 <div *ngIf="estParticulier==false">
     <div>
-        <h2>Cr&eacute;ation d'un client entreprise :
-        </h2>
+        <h4  style="text-align: center">Cr&eacute;ation d'un client entreprise
+        </h4>
     </div>
     <!-- <div class="container custom-container"> -->
     <!-- <div class="col-md-12"> -->
     <br />
-    <div class="form-group">
+    <div class="form-group container border border-secondary shadow p-3 mb-5 bg-white rounded">
         <form class="row" [formGroup]="createEntrepriseForm" (ngSubmit)="onCreateEntreprise()">
 
             <div class="container col-sm-4" style="width: 30rem;">
 
                 <label>Raison sociale : </label><input type="text" id="raisonSocialeEntreprise"
                     name="raisonSocialeEntreprise" formControlName="raisonSocialeEntreprise" class="form-control">
-
+<br>
                 <label>E-mail : </label><input type="text" id="emailEntreprise" name="emailEntreprise"
                     formControlName="emailEntreprise" class="form-control">
-
+<br>
                 <label>T&eacute;l&eacute;phone : </label><input type="text" id="telephoneEntreprise"
                     formControlName="telephoneEntreprise" class="form-control">
-
+<br>
                 <div formGroupName="adresseEntreprise">
-
+                    <br><label class="justify-content-center"><u>Adresse </u></label>
+<br>
+<br>
                     <label>Num&eacute;ro : </label><input type="text" id="numeroEntreprise" name="numeroEntreprise"
                         formControlName="numeroEntreprise" class="form-control">
-
+<br>
                     <label>Rue : </label><input type="text" id="rueEntreprise" name="rueEntreprise"
                         formControlName="rueEntreprise" class="form-control">
-
+<br>
                     <label>Code Postal : </label><input type="text" id="codePostalEntreprise"
                         name="codePostalEntreprise" formControlName="codePostalEntreprise" class="form-control">
-
+<br>
                     <label>Ville : </label><input type="text" id="villeEntreprise" name="villeEntreprise"
                         formControlName="villeEntreprise" class="form-control">
 
                 </div>
             </div>
             <div class="container col-sm-6" style="width: 30rem;">
-                <label>Compte courant : </label><input type="checkbox" id="compteCourantEntreprise"
-                    name="compteCourantEntreprise" formControlName="compteCourantEntreprise" class="form-control">
-
+                                           <label class="justify-content-center"><u>Comptes </u></label>
+           <br>
+                      <br> 
+                <label  class="mr-2">Compte courant : </label><input type="checkbox" id="compteCourantEntreprise"
+                   class="mr-2" name="compteCourantEntreprise" formControlName="compteCourantEntreprise" >
+<br>
+<br>
                 <label>Solde compte courant : </label><input type="text" id="soldeCompteCourantEntreprise"
                     name="soldeCompteCourantEntreprise" formControlName="soldeCompteCourantEntreprise"
                     class="form-control">
-
+<br>
                 <label>Carte bancaire : </label><select formControlName="carteBancaireParticulier" class="form-control">
                     <option selected>Electron</option>
                     <option>Premier</option>
                     <option>Aucune</option>
                 </select>
-
-                <label>Compte &eacute;pargne : </label><input type="checkbox" id="compteEpargneEntreprise"
-                    name="compteEpargneEntreprise" formControlName="compteEpargneEntreprise" class="form-control">
-
+<br>
+                <label class="mr-2">Compte &eacute;pargne : </label><input type="checkbox" id="compteEpargneEntreprise"
+                    class="mr-2" name="compteEpargneEntreprise" formControlName="compteEpargneEntreprise">
+<br>
+<br>
                 <label>Solde compte &eacute;pargne : </label><input type="text" id="soldeCompteEpargneEntreprise"
                     name="soldeCompteEpargneEntreprise" formControlName="soldeCompteEpargneEntreprise"
                     class="form-control">
@@ -193,6 +217,10 @@
                         class="fa fa-address-card mr-2"></span>Cr&eacute;er
                     le
                     client entreprise</button>
+
+                <div class="alert alert-danger" *ngIf="clientsEgalDix==true">
+                    Impossible de cr&eacute;er un nouveau client. Limite de 10 clients atteinte.
+                </div>
 
             </div>
         </form>

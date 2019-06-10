@@ -1,9 +1,11 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <ul class="navbar-nav col-xl-4 d-flex justify-content-start">
         <li class="nav-item">
-            <a class="nav-link active">Vous &ecirc;tes identifi&eacute; en tant que conseiller : {{conseiller.prenom}}
-                {{conseiller.nom}}</a>
-        </li>
+            <a class="nav-link active">Vous &ecirc;tes identifi&eacute; en tant que conseiller : <span style="font-style: italic"> {{conseiller.prenom}}
+                {{conseiller.nom}} </span></a>
+        </li> 
     </ul>
     <ul class="navbar-nav col-xl-4 d-flex justify-content-center">
         <li class="nav-item">
@@ -23,15 +25,16 @@
         </li>
     </ul>
 </nav>
-<br>
-<h5>Liste de particuliers</h5>
+<br/>
+<br/>
+<h4  style="text-align: center">Liste des clients particuliers</h4>
 <br />
-<table class="table">
+<table class="table container border border-secondary shadow p-3 mb-5 bg-white rounded">
     <tr style="text-align: center">
-        <th>Pr&eacute;nom NOM</th>
-        <th>Adresse</th>
-        <th>Coordonn&eacute;es</th>
-        <th>Informations</th>
+        <th class="border-bottom border-secondary">Pr&eacute;nom NOM</th>
+        <th class="border-bottom border-secondary">Adresse</th>
+        <th class="border-bottom border-secondary">Coordonn&eacute;es</th>
+        <th class="border-bottom border-secondary">Informations</th>
 
     </tr>
     <tr *ngFor="let client of conseiller.listeClients" style="text-align: center">
@@ -41,20 +44,19 @@
         <td *ngIf="client.nom && !client.raisonSociale">Email : {{client.email}} <br /> T&eacute;l&eacute;phone :
             {{client.telephone}}
         </td>
-        <td *ngIf="client.nom && !client.raisonSociale"><button class="btn btn-outline-info mr-1"
-                routerLink="/voir-client/{{idCons}}/{{client.id}}">Voir</button>
+        <td *ngIf="client.nom && !client.raisonSociale"><button class="btn btn-outline-info mr-1" style="font-weight: bold"
+                routerLink="/voir-client/{{idCons}}/{{client.id}}"><span class="fa fa-eye mr-2"></span>Voir</button>
         </td>
     </tr>
 </table>
+<h4  style="text-align: center">Liste des clients entreprises</h4>
 <br />
-<h5>Liste d'entreprises</h5>
-<br />
-<table class="table">
+<table class="table container border border-secondary shadow p-3 mb-5 bg-white rounded">
     <tr style="text-align: center">
-        <th>Raison sociale</th>
-        <th>Adresse</th>
-        <th>Coordonn&eacute;es</th>
-        <th>Informations</th>
+        <th class="border-bottom border-secondary">Raison sociale</th>
+        <th class="border-bottom border-secondary">Adresse</th>
+        <th class="border-bottom border-secondary">Coordonn&eacute;es</th>
+        <th class="border-bottom border-secondary">Informations</th>
 
     </tr>
     <tr *ngFor="let client of conseiller.listeClients" style="text-align: center">
@@ -64,8 +66,8 @@
         <td *ngIf="!client.nom && client.raisonSociale">Email : {{client.email}} <br /> T&eacute;l&eacute;phone :
             {{client.telephone}}
         </td>
-        <td *ngIf="!client.nom && client.raisonSociale"><button class="btn btn-outline-info mr-1"
-                routerLink="/voir-client/{{idCons}}/{{client.id}}">Voir</button>
+        <td *ngIf="!client.nom && client.raisonSociale"><button class="btn btn-outline-info mr-1" style="font-weight: bold"
+                routerLink="/voir-client/{{idCons}}/{{client.id}}"><span class="fa fa-eye mr-2"></span>Voir</button>
         </td>
     </tr>
 </table>
