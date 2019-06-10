@@ -26,8 +26,10 @@ export class EffectuerVirementComponent implements OnInit {
     choisirClientDetC: FormGroup;
     choisirCompteDetC: FormGroup;
     valeurTrueFalse: boolean = false;
+    valeurCompteD: string = 'init';
+    valeurCompteC: string = 'init';
+    messageVirement: string = 'init';
 
-    // clientSelected: FormGroup;
 
     // tslint:disable-next-line: max-line-length
     constructor(public gerantService: GerantService, public conseillerService: ConseillerService, public router: Router, private activatedRoute: ActivatedRoute, private fb: FormBuilder) {
@@ -46,7 +48,6 @@ export class EffectuerVirementComponent implements OnInit {
         this.clientCrediteur.compteEpargne = new CompteEpargne();
         this.clientCrediteur.compteCourant.carteBancaire = new CarteBancaire();
 
-        // this.clientCrediteur = new Client();
     }
 
     ngOnInit() {
@@ -68,7 +69,6 @@ export class EffectuerVirementComponent implements OnInit {
             montant: ['']
         })
 
-        // this.clientSelected = this.fb.group({});
     }
 
     afficherConseiller(id) {
@@ -77,20 +77,10 @@ export class EffectuerVirementComponent implements OnInit {
     }
 
     onSubmit() {
-        // this.clientDetails.nom = this.createClientForm.value.nom;  // montant
-        // this.virement = this.fb.group({
-        //     montant: ['', Validators.required]});
+
         this.valeurTrueFalse = true;
         console.log(this.conseiller);
     }
-
-    // clickClientD(idDebiteur) {
-    //     this.clientDebiteur.id = idDebiteur;
-    // }
-
-    // clickClientC(idCrediteur) {
-    //     this.clientCrediteur.id = idCrediteur;
-    // }
 
     validerClientsDetC() {
 
@@ -143,13 +133,60 @@ export class EffectuerVirementComponent implements OnInit {
     validerComptesDetC() {
 
         console.log(this.choisirCompteDetC.value.montant);
-
-        // attention faire un if pour les comptes epargnes
+        console.log(this.choisirCompteDetC.value.compteD.solde);
+        console.log(this.choisirCompteDetC.value.compteD);
+        console.log("coucou")
 
         // tslint:disable-next-line: max-line-length
-        // if ((this.choisirCompteDetC.value.compteD.id == "clientDC") && (this.choisirCompteDetC.value.compteC.id == "clientCC")) {
-            this.clientDebiteur.compteCourant.solde = this.clientDebiteur.compteCourant.solde - this.choisirCompteDetC.value.montant;
-            this.clientCrediteur.compteCourant.solde = this.clientCrediteur.compteCourant.solde - (- this.choisirCompteDetC.value.montant);
+
+        if (this.choisirCompteDetC.value.montant > 0 && this.choisirCompteDetC.value.montant < this.choisirCompteDetC.value.compteD.solde) {
+
+            if (this.choisirCompteDetC.value.compteD.id != this.choisirCompteDetC.value.compteC.id) {
+
+                this.messageVirement = 'ok';
+
+                if (!(this.choisirCompteDetC.value.compteD.tauxRemuneration) && !(this.choisirCompteDetC.value.compteC.tauxRemuneration)) {
+                    // tslint:disable-next-line: max-line-length
+                    this.clientDebiteur.compteCourant.solde = this.clientDebiteur.compteCourant.solde - this.choisirCompteDetC.value.montant;
+                    // tslint:disable-next-line: max-line-length
+                    this.clientCrediteur.compteCourant.solde = this.clientCrediteur.compteCourant.solde - (- this.choisirCompteDetC.value.montant);
+                    // tslint:disable-next-line: max-line-length
+                } else if ((this.choisirCompteDetC.value.compteD.tauxRemuneration) && !(this.choisirCompteDetC.value.compteC.tauxRemuneration)) {
+                    // tslint:disable-next-line: max-line-length
+                    this.clientDebiteur.compteEpargne.solde = this.clientDebiteur.compteEpargne.solde - this.choisirCompteDetC.value.montant;
+                    // tslint:disable-next-line: max-line-length
+                    this.clientCrediteur.compteCourant.solde = this.clientCrediteur.compteCourant.solde - (- this.choisirCompteDetC.value.montant);
+                    // tslint:disable-next-line: max-line-length
+                } else if (!(this.choisirCompteDetC.value.compteD.tauxRemuneration) && (this.choisirCompteDetC.value.compteC.tauxRemuneration)) {
+                    // tslint:disable-next-line: max-line-length
+                    this.clientDebiteur.compteCourant.solde = this.clientDebiteur.compteCourant.solde - this.choisirCompteDetC.value.montant;
+                    // tslint:disable-next-line: max-line-length
+                    this.clientCrediteur.compteEpargne.solde = this.clientCrediteur.compteEpargne.solde - (- this.choisirCompteDetC.value.montant);
+                    // tslint:disable-next-line: max-line-length
+                } else if ((this.choisirCompteDetC.value.compteD.tauxRemuneration) && (this.choisirCompteDetC.value.compteC.tauxRemuneration)) {
+                    // tslint:disable-next-line: max-line-length
+                    this.clientDebiteur.compteEpargne.solde = this.clientDebiteur.compteEpargne.solde - this.choisirCompteDetC.value.montant;
+                    // tslint:disable-next-line: max-line-length
+                    this.clientCrediteur.compteEpargne.solde = this.clientCrediteur.compteEpargne.solde - (- this.choisirCompteDetC.value.montant);
+                }
+
+
+                
+
+            } else {
+                this.messageVirement = 'memeComptesDetC';
+            }
+
+        } else {
+            if (this.choisirCompteDetC.value.montant < 0) {
+                this.messageVirement = 'montantNegatif';
+            } else if (this.choisirCompteDetC.value.montant > this.choisirCompteDetC.value.compteD.solde) {
+                this.messageVirement = 'montantSupSolde';
+            }
+
+        }
+
+
         // }
 
 

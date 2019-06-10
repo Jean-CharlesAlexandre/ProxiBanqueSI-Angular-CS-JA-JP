@@ -7,19 +7,23 @@
     </ul>
     <ul class="navbar-nav col-xl-4 d-flex justify-content-center">
         <li class="nav-item">
-            <a class="nav-link" routerLink="/liste-clients/{{idCons}}"><span style="font-weight: bold">Liste clients</span></a>
+            <a class="nav-link" routerLink="/liste-clients/{{idCons}}"><span style="font-weight: bold">Liste
+                    clients</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="/creer-client/{{idCons}}"><span style="font-weight: bold">Cr&eacute;er client</span></a>
+            <a class="nav-link" routerLink="/creer-client/{{idCons}}"><span style="font-weight: bold">Cr&eacute;er
+                    client</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="/effectuer-virement/{{idCons}}"><span style="font-weight: bold">Effectuer virement</span></a>
+            <a class="nav-link" routerLink="/effectuer-virement/{{idCons}}"><span style="font-weight: bold">Effectuer
+                    virement</span></a>
         </li>
     </ul>
 
     <ul class="navbar-nav col-xl-4 d-flex justify-content-end">
         <li>
-            <a class="nav-link" routerLink="/authentification"><span style="font-weight:bold; color: red">D&eacute;connexion</span></a>
+            <a class="nav-link" routerLink="/authentification"><span
+                    style="font-weight:bold; color: red">D&eacute;connexion</span></a>
         </li>
     </ul>
 </nav>
@@ -136,7 +140,7 @@
 
         <div>
             <label class="mr-3">
-                <h5><u>Comptes du client debiteur {{clientDebiteur.raisonSociale}} : </u></h5>
+                <h5><u>Comptes du client debiteur : </u></h5>
             </label>
             <select formControlName="compteD">
                 <option *ngIf="!(clientDebiteur.compteCourant == null)" [ngValue]="clientDebiteur.compteCourant"
@@ -157,7 +161,7 @@
 
         <div>
             <label class="mr-3">
-                <h5><u>Comptes du client crediteur {{clientCrediteur.raisonSociale}} : </u></h5>
+                <h5><u>Comptes du client crediteur : </u></h5>
             </label>
             <select formControlName="compteC">
                 <option *ngIf="!(clientCrediteur.compteCourant == null)" [ngValue]="clientCrediteur.compteCourant"
@@ -182,12 +186,26 @@
             </label><input type="text" id="montant" name="montant" formControlName="montant"> &euro;
         </div>
 
+        <div *ngIf="messageVirement == 'ok'" class="alert alert-success">
+            Virement valid&eacute;.
+        </div>
+        <div *ngIf="messageVirement == 'memeComptesDetC'" class="alert alert-danger">
+            Virement impossible. Le compte d&eacute;biteur et le compte cr&eacute;diteur sont identiques.
+        </div>
+        <div *ngIf="messageVirement == 'montantNegatif'" class="alert alert-danger">
+            Virement impossible. Le montant du virement est n&eacute;gatif.
+        </div>
+        <div *ngIf="messageVirement == 'montantSupSolde'" class="alert alert-danger">
+            Virement impossible. Le montant du virement est sup&eacute;rieur au solde du compte d&eacute;biteur.
+        </div>
+
         <p></p>
         <button class="btn btn-primary mr-5" type="submit"
             [disabled]="!choisirCompteDetC.valid&&!choisirCompteDetC.touched">Valider le virement</button>
-   
+
+
+
     </div>
     <br>
 </form>
-    <button class="btn btn-info float-center mr-3" routerLink="/liste-clients/{{idCons}}">Retour</button>
-    
+<button class="btn btn-info float-center mr-3" routerLink="/liste-clients/{{idCons}}">Retour</button>
