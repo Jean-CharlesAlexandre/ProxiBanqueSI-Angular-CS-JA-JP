@@ -16,22 +16,11 @@
     background-size: cover;
 } */
 
-.fond{
-    /* background-image: url('https://pixabay.com/get/55e2d1454b50a814ea9d857fc02a307b113ac3e456577148752c78d49f/background-3246124.jpg');
-    Full height */
-    background-color: #E9E4E1;
-  /* height: 100%; */
-
-  /* Center and scale the image nicely */
-  /* background-position: center; */
-  /* background-repeat: repeat; */
-  /* background-size: 8000px 8000px; */
-  background-attachment: local, scroll;
-
-}
-
+/* l'image occupe toute la place du body */
+	
 body, html {
-  /* height: 100%; */
+  height: 100%;
+  background-color: #E9E4E1;
 }
 
 

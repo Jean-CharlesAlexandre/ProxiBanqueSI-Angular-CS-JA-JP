@@ -1,5 +1,9 @@
-.fond {
+.placement{
+      position: relative;
+      top: 80px;
+      background-color: #E9E4E1;
+}
 
-    background-image: url("../../imageFond.jpg"); 
-
+container{
+    background-color: #E9E4E1;
 }

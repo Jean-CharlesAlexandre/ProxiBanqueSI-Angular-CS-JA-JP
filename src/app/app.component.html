@@ -1,29 +1,32 @@
-<div class="fond">
-    <div class="header" *ngIf="router.url === '/authentification'" style="text-align: center">
-        <img width="120px" alt="PB Logo" src="https://zupimages.net/up/19/23/cbf6.png">
-        <br>
-        <h1><i>
-                <font color="black">ProxiBanque,<table width="100%">
-                        <tr>
-                            <td> la banque proche de ses clients</td>
-                        </tr>
-                    </table>
-                </font>
-            </i></h1>
-    </div>
-    <div *ngIf="router.url != '/authentification'" class="row">
-        <img width="120px" alt="PB Logo" src="https://zupimages.net/up/19/23/cbf6.png">
-        <br>
-        <h1><i>
-                <font color="black">ProxiBanque,<table width="100%">
-                        <tr>
-                            <td> la banque proche de ses clients</td>
-                        </tr>
-                    </table>
-                </font>
-            </i></h1>
-    </div>
+<html>
+<div class="header" *ngIf="router.url === '/authentification'" style="text-align: center">
+    <img width="120px" alt="PB Logo" src="https://zupimages.net/up/19/23/cbf6.png">
     <br>
-    <br>
-    <router-outlet></router-outlet>
+    <h1><i>
+            <font color="black">ProxiBanque,<table width="100%">
+                    <tr>
+                        <td> la banque proche de ses clients</td>
+                    </tr>
+                </table>
+            </font>
+        </i></h1>
 </div>
+<div *ngIf="router.url != '/authentification'" class="row">
+    <img width="120px" alt="PB Logo" src="https://zupimages.net/up/19/23/cbf6.png">
+    <br>
+    <h1><i>
+            <font color="black">ProxiBanque,<table width="100%">
+                    <tr>
+                        <td> la banque proche de ses clients</td>
+                    </tr>
+                </table>
+            </font>
+        </i></h1>
+</div>
+<br>
+<br>
+
+
+<router-outlet></router-outlet>
+
+</html>

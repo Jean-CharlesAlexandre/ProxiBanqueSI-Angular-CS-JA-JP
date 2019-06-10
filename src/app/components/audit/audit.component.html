@@ -20,23 +20,24 @@
 
     <ul class="navbar-nav col-xl-4 d-flex justify-content-end">
         <li>
-            <a class="nav-link" routerLink="/authentification"><span style="font-weight:bold; color: red">D&eacute;connexion</span></a>
+            <a class="nav-link" routerLink="/authentification"><span
+                    style="font-weight:bold; color: red">D&eacute;connexion</span></a>
         </li>
     </ul>
 </nav>
 <br />
-<div style="text-align: center">
-    <h5>En cours de d&eacute;veloppement</h5>
+
+<div class="col-sm-12 d-flex justify-content-center">
+    <h4>Audit de l'agence ProxiBanque Le Marais :</h4>
+    <p></p>
 </div>
-<br />
-
-<h4>Audit de l'agence ProxiBanque Le Marais :</h4>
-<p></p>
 
 
-<p></p>
-<button class="btn btn-primary mr-5" (click)="realiserAudit()">AUDIT</button>
-<p></p>
+<div class="col-sm-12 d-flex justify-content-center">
+    <p></p>
+    <button class="btn btn-primary mr-5" (click)="realiserAudit()">AUDIT</button>
+    <p></p>
+</div>
 
 <!---->
 
@@ -50,8 +51,9 @@
         <div *ngIf="client.compteCourant">
 
 
-            <div *ngIf="client.nom && !client.raisonSociale && client.compteCourant.solde > 50"> Le compte courant du
-                client particulier {{client.prenom}} {{client.nom}} {{client.id}} a un solde de <span
+            <div *ngIf="client.nom && !client.raisonSociale && client.compteCourant.solde < -5000"> Le compte
+                courant du
+                client particulier {{client.prenom}} {{client.nom}} a un solde de <span
                     class="red">{{client.compteCourant.solde}} &euro; </span>.
 
                 <div *ngFor="let conseiller of gerant.listeConseillers">
@@ -60,7 +62,8 @@
                     <div *ngFor="let c of conseiller.listeClients">
 
                         <div *ngIf="c.id == client.id">
-                            Contacter son conseiller : <a href="mailto: {{conseiller.email}}"> {{conseiller.email}}</a>
+                            Contacter son conseiller : <a href="mailto: {{conseiller.email}}">
+                                {{conseiller.email}}</a>
                         </div>
 
                     </div>
@@ -72,8 +75,10 @@
             </div>
 
 
-            <div *ngIf="!client.nom && client.raisonSociale && client.compteCourant.solde > 50"> Le compte courant du
-                client entreprise {{client.raisonSociale}} {{client.id}}  a un solde de <span
+            <div *ngIf="!client.nom && client.raisonSociale && client.compteCourant.solde < -50000"> Le compte
+                courant
+                du
+                client entreprise {{client.raisonSociale}} a un solde de <span
                     class="red">{{client.compteCourant.solde}} &euro; </span>.
 
                 <div *ngFor="let conseiller of gerant.listeConseillers">
@@ -82,7 +87,8 @@
                     <div *ngFor="let c of conseiller.listeClients">
 
                         <div *ngIf="c.id == client.id">
-                            Contacter son conseiller : <a href="mailto: {{conseiller.email}}"><span class="fa fa-at"></span> {{conseiller.email}}</a>
+                            Contacter son conseiller : <a href="mailto: {{conseiller.email}}">
+                                {{conseiller.email}}</a>
                         </div>
 
                     </div>
@@ -92,15 +98,12 @@
                 <br />
 
             </div>
-
 
         </div>
 
-
     </div>
-
-
     <div class="col-sm-12 d-flex justify-content-center">
         <button class="btn btn-info float-center mr-5" routerLink="/liste-conseillers/{{idGerant}}"
             routerLinkActive="router-link-active">Retour</button>
     </div>
+</div>
