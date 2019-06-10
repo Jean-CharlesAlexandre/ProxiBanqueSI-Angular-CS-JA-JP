@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <ul class="navbar-nav col-xl-4 d-flex justify-content-start">
         <li class="nav-item">
@@ -19,7 +21,7 @@
 
     <ul class="navbar-nav col-xl-4 d-flex justify-content-end">
         <li>
-            <a class="nav-link" routerLink="/authentification">D&eacute;connexion</a>
+            <a class="nav-link" routerLink="/authentification"><span style="font-weight:bold; color: red">D&eacute;connexion</span></a>
         </li>
     </ul>
 </nav>
@@ -92,11 +94,11 @@
             </table>
             <div class="col-sm-6 d-flex justify-content-center">
                 <button class="btn btn-info float-center mr-5" routerLink="/liste-clients/{{idCons}}"
-                    routerLinkActive="router-link-active">Retour</button>
+                    routerLinkActive="router-link-active"><span class="fa fa-home mr-2"></span>Retour</button>
                 <button class="btn btn-secondary float-center mr-5"
-                    routerLink="/modifier-client/{{idCons}}/{{clientDetails.id}}">Modifier</button>
+                    routerLink="/modifier-client/{{idCons}}/{{clientDetails.id}}"><span class="fa fa-user mr-2"></span>Modifier</button>
                 <button class="btn btn-danger float-center"
-                    (click)="supprimerClient(clientDetails.id)">Supprimer</button>
+                    (click)="supprimerClient(clientDetails.id)"><span class="fa fa-trash mr-2"></span>Supprimer</button>
             </div>
         </div>
     </div>

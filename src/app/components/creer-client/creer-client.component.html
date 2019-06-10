@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <ul class="navbar-nav col-xl-4 d-flex justify-content-start">
         <li class="nav-item">
@@ -19,7 +21,7 @@
 
     <ul class="navbar-nav col-xl-4 d-flex justify-content-end">
         <li>
-            <a class="nav-link" routerLink="/authentification">D&eacute;connexion</a>
+            <a class="nav-link" routerLink="/authentification"><span style="font-weight:bold; color: red">D&eacute;connexion</span></a>
         </li>
     </ul>
 </nav>
@@ -104,8 +106,8 @@
                 <br />
 
 
-                <button class="btn btn-default" type="submit"
-                    [disabled]="!createParticulierForm.valid&&!createParticulierForm.touched" style="background-color: #E7EDED"><span class="fa fa-check mr-2" style="color:#0B7A6D;"></span>Cr&eacute;er le
+                <button class="btn btn-info" type="submit"
+                    [disabled]="!createParticulierForm.valid&&!createParticulierForm.touched"><span class="fa fa-address-card mr-2"></span>Cr&eacute;er le
                     client particulier</button>
 
             </div>
@@ -129,7 +131,7 @@
     <div class="form-group">
         <form class="row" [formGroup]="createEntrepriseForm" (ngSubmit)="onCreateEntreprise()">
 
-            <div class="container col-sm-6" style="width: 30rem;">
+            <div class="container col-sm-4" style="width: 30rem;">
 
                 <label>Raison sociale : </label><input type="text" id="raisonSocialeEntreprise"
                     name="raisonSocialeEntreprise" formControlName="raisonSocialeEntreprise" class="form-control">
@@ -179,8 +181,8 @@
                 <br />
                 <br />
 
-                <button class="btn btn-default" type="submit"
-                    [disabled]="!createEntrepriseForm.valid&&!createEntrepriseForm.touched" style="background-color: #E7EDED"> <span class="fa fa-check mr-2" style="color:#0B7A6D;"></span>Cr&eacute;er
+                <button class="btn btn-info" type="submit"
+                    [disabled]="!createEntrepriseForm.valid&&!createEntrepriseForm.touched"> <span class="fa fa-address-card mr-2"></span>Cr&eacute;er
                     le
                     client entreprise</button>
 
