@@ -40,7 +40,6 @@ export class AuthentificationComponent implements OnInit {
             this.estAuthentifie = true;
         } else {
             this.estAuthentifie = false;
-            console.log(this.gerant.identifiant)
         }
     }
 
