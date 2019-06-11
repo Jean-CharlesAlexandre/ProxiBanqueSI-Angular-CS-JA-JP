@@ -3,8 +3,8 @@
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <ul class="navbar-nav col-xl-4 d-flex justify-content-start">
         <li class="nav-item">
-            <a class="nav-link active">Vous &ecirc;tes identifi&eacute; en tant que g&eacute;rant : {{gerant.prenom}}
-                {{gerant.nom}}</a>
+            <a class="nav-link active">Vous &ecirc;tes identifi&eacute; en tant que g&eacute;rant :
+               <span style="font-style: italic"> {{gerant.prenom}} {{gerant.nom}} </span></a>
         </li>
     </ul>
 
@@ -26,24 +26,22 @@
     </ul>
 </nav>
 <br />
-
 <div class="col-sm-12 d-flex justify-content-center">
-    <h4>Audit de l'agence ProxiBanque Le Marais :</h4>
+    <h4 style="text-align: center">Audit de l'agence ProxiBanque Le Marais</h4>
     <p></p>
 </div>
 
+<br/>
 
 <div class="col-sm-12 d-flex justify-content-center">
-    <p></p>
-    <button class="btn btn-primary mr-5" (click)="realiserAudit()">AUDIT</button>
-    <p></p>
+    <button  *ngIf="valeurTrueFalse==false" class="btn btn-info mr-5" style="font-weight: bold" (click)="realiserAudit()">R&eacute;aliser un audit de l'agence</button>
 </div>
 
 <!---->
 
 <!-- <form  [formGroup]="audit" (ngSubmit)="validerAudit()">  (ngSubmit)="validerAudit() -->
 
-<div *ngIf="valeurTrueFalse">
+<div style="text-align: center" *ngIf="valeurTrueFalse">
 
 
     <div *ngFor="let client of tousClients">
@@ -86,7 +84,7 @@
 
                     <div *ngFor="let c of conseiller.listeClients">
 
-                        <div *ngIf="c.id == client.id">
+                        <div  *ngIf="c.id == client.id">
                             Contacter son conseiller : <a href="mailto: {{conseiller.email}}">
                                 {{conseiller.email}}</a>
                         </div>
@@ -102,8 +100,9 @@
         </div>
 
     </div>
+    <br/>
     <div class="col-sm-12 d-flex justify-content-center">
-        <button class="btn btn-info float-center mr-5" routerLink="/liste-conseillers/{{idGerant}}"
-            routerLinkActive="router-link-active">Retour</button>
+        <button style="text-align: center" class="btn btn-info float-center mr-5" routerLink="/liste-conseillers/{{idGerant}}"
+            routerLinkActive="router-link-active"><span class="fa fa-arrow-left mr-2"></span>Retour</button>
     </div>
 </div>
