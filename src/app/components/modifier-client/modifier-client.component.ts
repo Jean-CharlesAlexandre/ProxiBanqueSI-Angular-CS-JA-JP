@@ -18,7 +18,8 @@ export class ModifierClientComponent implements OnInit {
     clientDetails: any = {};
     conseiller: any = [];
 
-    constructor(public gerantService: GerantService, private service: ConseillerService, private activatedRoute: ActivatedRoute, private router: Router) {
+    constructor(public gerantService: GerantService, private service: ConseillerService, 
+        private activatedRoute: ActivatedRoute, private router: Router) {
         this.clientDetails = new Client();
         this.clientDetails.adresse = new Adresse();
         this.conseiller = new Conseiller();

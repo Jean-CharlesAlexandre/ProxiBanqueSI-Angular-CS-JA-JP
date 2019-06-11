@@ -77,9 +77,7 @@ export class EffectuerVirementComponent implements OnInit {
     }
 
     onSubmit() {
-
         this.valeurTrueFalse = true;
-        console.log(this.conseiller);
     }
 
     validerClientsDetC() {
@@ -185,9 +183,6 @@ export class EffectuerVirementComponent implements OnInit {
             }
 
         }
-
-
-        // }
 
 
         this.conseillerService.updateClient(this.clientDebiteur).subscribe((data: {}) => console.log(data))
