@@ -8,17 +8,6 @@
 .button{
     background-color: aquamarine;
 }
-
-/* .banniere{
-    background-image: url('https://buidln.clipdealer.com/002/512/082//previews/1--2512082-light-coloured%20soft%20frame%20loop%20background.jpg');
-    background-size: cover;
-} */
-
-/* .imageAuthentification{
-    background-size: cover;
-} */
-
-/* l'image occupe toute la place du body */
 	
 body, html {
   height: 100%;

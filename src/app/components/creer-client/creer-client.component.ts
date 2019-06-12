@@ -24,14 +24,12 @@ export class CreerClientComponent implements OnInit {
     createParticulierForm: FormGroup;
     createEntrepriseForm: FormGroup;
     idCons = this.activatedRoute.snapshot.params['idCons'];
-    // type = this.activatedRoute.snapshot.params['type'];
     conseiller: any = [];
 
     constructor(private conseillerService: ConseillerService, private fb: FormBuilder,
         private router: Router, private activatedRoute: ActivatedRoute, private gerantService: GerantService) {
         this.clientDetails = new Client();
         this.clientDetails.adresse = new Adresse();
-
         this.conseiller = new Conseiller();
         this.conseiller.listeClients = [];
     }

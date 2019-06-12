@@ -135,8 +135,6 @@ export class EffectuerVirementComponent implements OnInit {
         console.log(this.choisirCompteDetC.value.compteD);
         console.log("coucou")
 
-        // tslint:disable-next-line: max-line-length
-
         if (this.choisirCompteDetC.value.montant > 0 && this.choisirCompteDetC.value.montant < this.choisirCompteDetC.value.compteD.solde) {
 
             if (this.choisirCompteDetC.value.compteD.id != this.choisirCompteDetC.value.compteC.id) {
@@ -169,8 +167,6 @@ export class EffectuerVirementComponent implements OnInit {
                 }
 
 
-                
-
             } else {
                 this.messageVirement = 'memeComptesDetC';
             }
@@ -188,7 +184,6 @@ export class EffectuerVirementComponent implements OnInit {
         this.conseillerService.updateClient(this.clientDebiteur).subscribe((data: {}) => console.log(data))
         this.conseillerService.updateClient(this.clientCrediteur).subscribe((data: {}) => console.log(data))
 
-        // this.clientCrediteur = this.afficherClientC(this.choisirClientDetC.value.clientC.id);
 
     }
 

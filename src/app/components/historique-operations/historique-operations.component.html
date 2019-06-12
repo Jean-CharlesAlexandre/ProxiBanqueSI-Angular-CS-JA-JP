@@ -1,8 +1,10 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <ul class="navbar-nav col-xl-4 d-flex justify-content-start">
         <li class="nav-item">
-            <a class="nav-link active">Vous &ecirc;tes identifi&eacute; en tant que conseiller : {{conseiller.prenom}}
-                {{conseiller.nom}}</a>
+            <a class="nav-link active">Vous &ecirc;tes identifi&eacute; en tant que conseiller : <i> {{conseiller.prenom}}
+                {{conseiller.nom}}</i></a>
         </li>
     </ul>
     <ul class="navbar-nav col-xl-4 d-flex justify-content-center">
@@ -27,4 +29,4 @@
 <p>
     En cours de d&eacute;veloppement
 </p>
-<button class="btn btn-info" routerLink="/voir-client/{{idCons}}/{{idClient}}">Retour</button>
+<button class="btn btn-info" routerLink="/voir-client/{{idCons}}/{{idClient}}"><span class="fa fa-arrow-left mr-2"></span>Retour</button>

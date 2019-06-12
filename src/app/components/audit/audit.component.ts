@@ -17,17 +17,14 @@ export class AuditComponent implements OnInit {
 
     idGerant = this.activatedRoute.snapshot.params['idGerant'];
     gerant: any = [];
-    // @Input()
-    // NgForOf: NgIterable<Consiller>;
     conseiller: any = [];
     valeurTrueFalse: boolean = false;
     audit: FormGroup;
     tousClients: any = [];
 
-    // tslint:disable-next-line: max-line-length
+// tslint:disable-next-line: max-line-length
     constructor(private conseillerService: ConseillerService, private service: GerantService, private activatedRoute: ActivatedRoute, private router: Router, private fb: FormBuilder) {
         this.gerant = new Gerant();
-        // this.gerant.listeConseillers = new Array<conseiller)>; //new Conseiller{};
         this.conseiller = new Conseiller();
 
     }
@@ -39,7 +36,6 @@ export class AuditComponent implements OnInit {
 
         this.audit = this.fb.group({
         });
-        // this.conseiller = this.afficherConseiller(this.)
     }
 
     afficherGerant(id) {
@@ -48,10 +44,6 @@ export class AuditComponent implements OnInit {
 
     realiserAudit() {
         this.valeurTrueFalse = true;
-    }
-
-    validerAudit() {
-        // this.valeurTrueFalse = true;
     }
 
     recupererTousClients() {

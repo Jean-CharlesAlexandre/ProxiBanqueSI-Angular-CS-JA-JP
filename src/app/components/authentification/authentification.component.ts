@@ -14,8 +14,8 @@ export class AuthentificationComponent implements OnInit {
 
     authentificationForm: FormGroup;
     estAuthentifie: boolean = true;
-    idCons1: any = {}; //this.activatedRoute.snapshot.params['idCons1'];
-    idCons2: any = {}; //this.activatedRoute.snapshot.params['idCons2'];
+    idCons1: any = {}; 
+    idCons2: any = {};
     idGerant: any = {};
     gerant: any = [];
     conseiller: any = [];

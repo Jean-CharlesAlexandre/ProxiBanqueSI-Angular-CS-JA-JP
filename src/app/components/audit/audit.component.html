@@ -40,8 +40,6 @@
 
 <!---->
 
-<!-- <form  [formGroup]="audit" (ngSubmit)="validerAudit()">  (ngSubmit)="validerAudit() -->
-
 <div style="text-align: center" *ngIf="valeurTrueFalse"
 	class="card-body container border border-secondary shadow p-3 mb-5 bg-white rounded">
 
@@ -57,7 +55,6 @@
 					class="red">{{client.compteCourant.solde}} &euro; </span>.
 
 				<div *ngFor="let conseiller of gerant.listeConseillers">
-					<!--; let c of conseiller.listeClients">-->
 
 					<div *ngFor="let c of conseiller.listeClients">
 

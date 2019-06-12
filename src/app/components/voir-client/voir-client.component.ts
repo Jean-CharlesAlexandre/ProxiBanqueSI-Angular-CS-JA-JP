@@ -23,6 +23,7 @@ export class VoirClientComponent implements OnInit {
     conseiller: any = [];
     soldeCompteSuperieur: boolean;
 
+// tslint:disable-next-line: max-line-length
     constructor(private service: ConseillerService, private serviceG: GerantService, private activatedRoute: ActivatedRoute, private router: Router) {
         this.clientDetails = new Client();
         this.clientDetails.adresse = new Adresse();
@@ -45,10 +46,10 @@ export class VoirClientComponent implements OnInit {
 
     supprimerClient(id) {
         if (window.confirm('Voulez-vous vraiment supprimer ce client ?')) {
-            if(window.confirm('Veuillez contacter le client pour regulariser ses comptes !')){
+            if (window.confirm('Veuillez contacter le client pour regulariser ses comptes !')) {
                 this.service.deleteClient(id).subscribe(data => {
-                this.router.navigate(['/liste-clients/' + this.idCons]);
-            });
+                    this.router.navigate(['/liste-clients/' + this.idCons]);
+                });
             }
         }
     }
