@@ -12,7 +12,8 @@ import { Gerant } from '../model/gerant';
 export class GerantService {
 
     // endpoint = 'http://localhost:3000';
-    endpoint = 'http://localhost:8080/ProxiBanqueSI/gerants';
+    //endpoint = 'http://localhost:8080/ProxiBanqueSI/gerants';
+    endpoint = 'http://proxi-app:8080/ProxiBanqueSI/gerants';
 
     constructor(private http: HttpClient) { }
 

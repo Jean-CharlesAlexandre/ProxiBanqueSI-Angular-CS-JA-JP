@@ -12,7 +12,8 @@ import { catchError, retry } from 'rxjs/operators';
 export class ConseillerService {
 
     // endpoint = 'http://localhost:3000';
-    endpoint = 'http://localhost:8080/ProxiBanqueSI';
+    //endpoint = 'http://localhost:8080/ProxiBanqueSI';
+    endpoint = 'http://proxi-app:8080/ProxiBanqueSI';
 
     constructor(private http: HttpClient) { }
 
